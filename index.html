@@ -102,6 +102,26 @@ input.t:focus{border-color:#EE7F92}
 #tk{display:none;width:auto;max-width:100%;max-height:calc(100vh - 190px);border-radius:12px;box-shadow:0 6px 18px rgba(74,46,34,.18);-webkit-touch-callout:default;-webkit-user-select:auto;user-select:auto}
 .ph{font-size:16px;line-height:1.7;background:#fff;border:2px dashed #f0dcd4;border-radius:16px;padding:14px;max-width:340px}
 @media (max-height:700px){#a2 .stage{--h:118px;margin:10px 0 0;min-height:90px}#ovHit .stage{--h:240px}.cd{min-height:56px}.cd.main{min-height:52px}.ttl{font-size:18px;margin:2px 0 4px}}
+
+#app.gen{overflow-y:auto;-webkit-overflow-scrolling:touch}
+#app.gen .pv{flex:0 0 auto;min-height:96px}
+#app.gen .chip{min-height:34px;padding:0 10px;font-size:13.5px}
+#app.gen .row{min-height:40px;margin:2px 0}
+.cd .tag{position:absolute;left:6px;top:4px;font-size:10px;font-style:normal;background:#E8505B;color:#fff;border-radius:8px;padding:1px 6px;font-weight:700}
+.wh{position:relative;width:260px;height:260px;margin:6px 0}
+.wh .disc{width:100%;height:100%;border-radius:50%;border:6px solid #4A2E22;transition:transform 3s cubic-bezier(.15,.85,.25,1);position:relative;overflow:hidden;box-shadow:0 5px 0 #f0dcd4}
+.wh .lb{position:absolute;left:50%;top:50%;width:50%;height:28px;margin-top:-14px;transform-origin:0 50%;text-align:right;padding-right:10px;font-size:13.5px;font-weight:700;color:#4A2E22;line-height:28px;white-space:nowrap}
+.wh .pin{position:absolute;left:50%;top:-8px;margin-left:-13px;width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-top:26px solid #E8505B;z-index:2;filter:drop-shadow(0 2px 0 #fff)}
+.wh .hub{position:absolute;left:50%;top:50%;width:44px;height:44px;margin:-22px;border-radius:50%;background:#fff;border:4px solid #4A2E22;z-index:2}
+#whRes{min-height:28px;font-size:18px;font-weight:800;color:#E8505B}
+.letter{background:#fff;border-radius:6px 6px 18px 18px;padding:22px 20px 18px;max-width:330px;text-align:left;font-size:16px;line-height:1.9;color:#4A2E22;box-shadow:0 6px 16px rgba(74,46,34,.12);background-image:repeating-linear-gradient(transparent 0 29px,#f6e3da 29px 30px);background-position:0 16px;position:relative}
+.letter .to{color:#E8505B;font-weight:700;margin-bottom:4px}.letter .fr{text-align:right;color:#8C6D60;margin-top:8px}
+#calmL{display:none;margin-top:8px;font-size:14px;color:#8C6D60;text-decoration:underline;padding:8px}
+#a3 .imgbox{display:none;flex-direction:column;align-items:center}
+#a3 .imgbox.on{display:flex;animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
+#a3 .imgbox img{max-width:100%;max-height:calc(100vh - 150px);border-radius:12px;box-shadow:0 6px 18px rgba(74,46,34,.18)}
+#ovCalm img{display:block;max-width:100%;max-height:calc(100vh - 230px);border-radius:12px;box-shadow:0 6px 18px rgba(74,46,34,.18)}
+@media (max-height:700px){#a3 .q{font-size:22px;margin:2px 0}#stg3{--h:140px!important;margin:4px 0!important}.zone{height:200px}.wh{width:220px;height:220px}}
 @media (prefers-reduced-motion:reduce){.env{animation:none}.act.on{animation:none}}
 </style></head><body><div id="app"></div><div id="toast"></div>
 <div id="linkBox"><div class="card"><b>长按下面的链接复制</b><div class="lk" id="lk"></div><div class="hint">复制好就去发给 TA 吧</div><div class="btns" style="margin-top:10px"><button class="big" id="lkOk">好的</button></div></div></div>
@@ -131,6 +151,48 @@ var T=[
  ['{n}～打游戏把你晾在一边，我好坏！游戏里我是大神，在你这儿我只想当个乖乖的跟班，理理我嘛 🥺',
   '{n}，那天我只顾着打游戏，把你冷落了，对不起。比起赢一局，我更想好好陪你说说话。',
   '{n}，队友骂我我不在乎，你不理我我真的慌了！已经把游戏卸载……又装上了，但这次先陪你再上线 🎮']];
+// ==== 文案总表 COPY：唯果可以直接改这里（{n}=对方名字）====
+// cats: 吵架类型。soft=[撒娇,认真,搞笑]（serious:true 只用认真一句）；prom=默认补偿序号(0买奶茶 1请吃饭 2陪你逛街 3任你处置)；rec=推荐卡片(hit/fine/wheel/talk)；explain=听我解释
+var COPY={
+ cats:[
+  {label:'冷落、回复慢',prom:0,rec:'fine',
+   soft:['{n}～让你等我消息等了那么久，是我太笨啦！以后你的消息我秒回，比外卖还快，理理我嘛',
+         '{n}，那段时间让你一个人等我的回复，对不起。以后再忙，我也会先回你一句，让你知道我一直在。',
+         '{n}大人，小的回复慢，罪加一等！手指已关禁闭，从今天起它只负责一件事：秒回你。'],
+   explain:'那天手头的事一件接一件，等我抬头已经很晚了。再忙也该先回你一句，这次是我想得太少。'},
+  {label:'放鸽子',prom:1,rec:'wheel',
+   soft:['{n}～说好的事我放了你鸽子，我好坏！欠你的这次，周末加倍补给你，好嘛好嘛',
+         '{n}，约好的事我临时变卦，让你白白期待了，对不起。这次欠你的，我会认真补上。',
+         '{n}，本鸽已被抓获归案！特此申请戴罪立功：周末加倍陪你，随叫随到。'],
+   explain:'那天临时冒出别的事，我一着急就先顾了那边。现在想想，最该先顾的是你，下次我先跟你商量。'},
+  {label:'说错话',prom:0,rec:'hit',
+   soft:['{n}～我嘴笨说错话了，惹你难过，你打我两下出出气嘛，打完就理我好吗',
+         '{n}，那句话说得太重了，伤到你了，对不起。我当时语气很冲，以后我先好好听你说。',
+         '{n}，我的嘴已经被我罚站了！它说过的话全部作废，从现在起只负责夸你。'],
+   explain:'那会儿我脑子一热，话赶话就说出口了。我心里想的完全是另一回事，就是嘴比脑子快。'},
+  {label:'忘了重要的日子',prom:1,rec:'talk',
+   soft:['{n}～这么重要的日子我都忘了，笨蛋本蛋！可喜欢你这件事我天天记得，给我一次补过的机会嘛',
+         '{n}，忘了这么重要的日子，让你失望了，对不起。那天对你很重要，对我也一样，我想好好补给你一个。',
+         '{n}，我的记性被小猫叼走了！已经把这个日子设成闹钟、壁纸和密码，这辈子都记得牢牢的。'],
+   explain:'最近事情一多，我把日子记混了。这真的怪我，提醒已经设好，下一次我来给你一个更隆重的。'},
+  {label:'异性边界',prom:1,rec:'talk',serious:true,
+   soft:['{n}，让你心里难受了，对不起。我想把事情一五一十跟你讲清楚，以后跟别人相处的分寸，我会守好，让你安心。'],
+   explain:'我把经过都讲给你听：那件事是怎么回事、我当时怎么想的。你想问什么，我都如实回答。'},
+  {label:'琐事积累',prom:3,rec:'fine',
+   soft:['{n}～小事攒多了让你好累，都怪我！从今天起家务我抢着干，你只负责被我宠着嘛',
+         '{n}，那些小事一件件堆起来，让你辛苦了，对不起。我会把答应你的事一件件做到。',
+         '{n}，本人已签下《家务全包协议》！袜子归位、碗筷洗净，请老板验收。'],
+   explain:'我总把这些当小事随手一放，原来你一直在替我收拾，辛苦你了，以后换我来。'},
+  {label:'突然不开心了',prom:3,rec:'hit',
+   soft:['{n}～为什么生气都好，先算我的错！我抱着你认错，你想怎么罚都行嘛',
+         '{n}，我看出你心里难受了，对不起。愿意的话跟我说说，我想好好听你讲。',
+         '{n}，为什么生气就当是我的错！小的已经跪好，请陛下发落。'],
+   explain:'我想了一圈，可能是我哪里忽略了你的感受。无论是哪件事，我都想听你说，然后好好改。'}
+ ],
+ wheel:['奶茶一杯','火锅一顿','陪逛一下午','零食大礼包','揉肩十分钟','再转一次'],
+ calm:{title:'冷静中…',line:'明天再来哄我',sub:'先让我静一静，明天见'},
+ coupon:{title:'和好券',days:7}
+};
 var PLEAS=['我是🐷','罪该万死','陛下恕罪','再也不敢了','小的知错','打得好！','轻点轻点','你说得都对','我是笨蛋','我检讨！','求求了🥺','以后都听你的'];
 var NOS=['不原谅','真的不原谅吗…','再给次机会嘛','我会哭的哦','呜呜呜…','求求你了🥺','好吧你点不到我的'];
 // ---- final art: assets/set{c}_{boy|girl}_{pose}.svg (swap files by name)
@@ -143,11 +205,16 @@ function preload(set){['m','f'].forEach(function(g){POSES.forEach(function(p){va
 // ---- url codec (base64url of utf-8 JSON)
 function enc(o){var b=new TextEncoder().encode(JSON.stringify(o)),s='';for(var i=0;i<b.length;i++)s+=String.fromCharCode(b[i]);return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
 function dec(t){try{t=t.replace(/-/g,'+').replace(/_/g,'/');var s=atob(t),b=new Uint8Array(s.length);for(var i=0;i<s.length;i++)b[i]=s.charCodeAt(i);return JSON.parse(new TextDecoder().decode(b))}catch(e){return null}}
-function clean(d){d=d||{};var r={n:String(d.n||'').trim().slice(0,12),w:d.w==1?1:0,c:d.c==2?2:1,s:[0,1,2].indexOf(+d.s)>=0?+d.s:0,t:[0,1,2].indexOf(+d.t)>=0?+d.t:0,p:[0,1,2,3,4].indexOf(+d.p)>=0?+d.p:0};
+function clean(d){d=d||{};var r={k:(d.k!==undefined&&+d.k>=0&&+d.k<COPY.cats.length)?+d.k:-1,e:String(d.e||'').trim().slice(0,60),n:String(d.n||'').trim().slice(0,12),w:d.w==1?1:0,c:d.c==2?2:1,s:[0,1,2].indexOf(+d.s)>=0?+d.s:0,t:[0,1,2].indexOf(+d.t)>=0?+d.t:0,p:[0,1,2,3,4].indexOf(+d.p)>=0?+d.p:0};
  if(r.p==4){r.pc=String(d.pc||'').trim().slice(0,MAXC);if(!r.pc)r.p=0}return r}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-function apo(d){return esc(T[d.s][d.t].replace('{n}',d.n||'你'))}
+function cat(d){return d.k>=0?COPY.cats[d.k]:null}
+function softRaw(d){var c=cat(d);return (c?c.soft[c.serious?0:d.t]:T[d.s][d.t]).replace('{n}',d.n||'你')}
+function apo(d){return esc(softRaw(d))}
+function expl(d){var c=cat(d);return d.e||(c?c.explain:'那天是我考虑得太少，让你受委屈了。我想好好听你说，也想好好改。')}
 function promText(d){return d.p==4?d.pc:PROMS[d.p][0]}
+function wheelHTML(){var W=COPY.wheel,n=W.length,cols=['#FFF1C9','#FDEBE6','#DCE8F6','#FFE3E8','#E6F2DE','#FFF6EF'],st=[];for(var i=0;i<n;i++)st.push(cols[i%cols.length]+' '+(i*360/n)+'deg '+((i+1)*360/n)+'deg');
+ return '<div style="position:absolute;inset:0;background:conic-gradient('+st.join(',')+')"></div>'+W.map(function(w,i){return '<div class="lb" style="transform:rotate('+(i*360/n+180/n-90)+'deg)">'+w+'</div>'}).join('')}
 function ta(d){return d.w?'她':'他'}
 function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(function(){t.classList.remove('on')},1800)}
 // ---- sound (tap-triggered only)
@@ -158,27 +225,28 @@ function squeak(){tone(900,1400,.08,'square',.06)}
 function yay(){tone(300,1200,.35,'sine',.25);tone(1200,500,.25,'sine',.2,.35);[523,659,784,1046].forEach(function(f,i){tone(f,f,.14,'triangle',.18,.62+i*.1)})}
 // ---- generator
 function gen(){
- var d=clean({});
+ var d=clean({});d.k=0;d.p=COPY.cats[0].prom;app.classList.add('gen');
  app.innerHTML='<h1>软话小人<small>替你把对不起说出口</small></h1>'+
  '<div class="row"><span class="lab">TA 叫</span><input class="t" id="nm" maxlength="12" placeholder="对方的名字或昵称"></div>'+
  '<div class="row"><span class="lab">谁道歉</span><div class="chips" id="cw"></div></div>'+
  '<div class="row"><span class="lab">小人</span><div class="chips" id="cc"></div></div>'+
- '<div class="row"><span class="lab">为啥</span><div class="chips" id="cs"></div></div>'+
- '<div class="row"><span class="lab">语气</span><div class="chips" id="ct"></div></div>'+
+ '<div class="row"><span class="lab">因为啥</span><div class="chips" id="cs"></div></div>'+
+ '<div class="row" id="ctRow"><span class="lab">语气</span><div class="chips" id="ct"></div></div>'+
  '<div class="row"><span class="lab">补偿</span><div class="chips" id="cp"></div></div>'+
  '<div class="row" id="cpRow"><span class="lab"></span><input class="t" id="pc" maxlength="'+MAXC+'" placeholder="比如：帮你洗一周碗"></div>'+
+ '<div class="row"><span class="lab">想解释</span><input class="t" id="ex" maxlength="60" placeholder="选填，60 字以内"></div>'+
  '<div class="pv"><div class="mini" id="mini"></div><p id="pv"></p></div>'+
  '<div class="btns"><button class="big alt" id="see">先看看效果</button><button class="big" id="go">生成链接</button></div>';
  function chips(id,arr,key){var el=$(id);el.innerHTML=arr.map(function(a,i){return '<button class="chip" data-i="'+i+'">'+a+'</button>'}).join('');
-  el.onclick=function(e){var b=e.target.closest('.chip');if(!b)return;d[key]=+b.dataset.i+(key=='c'?1:0);draw()}}
- chips('#cw',['他','她'],'w');chips('#cc',['一号情侣','二号情侣'],'c');chips('#cs',SCENES,'s');chips('#ct',TONES,'t');chips('#cp',PROMS.map(function(p){return p[0]}),'p');
- function draw(){var m={w:d.w,c:d.c-1,s:d.s,t:d.t,p:d.p};['w','c','s','t','p'].forEach(function(k){[].forEach.call($('#c'+k).children,function(b,i){b.classList.toggle('on',i==m[k])})});
+  el.onclick=function(e){var b=e.target.closest('.chip');if(!b)return;d[key]=+b.dataset.i+(key=='c'?1:0);if(key=='k'){d.p=COPY.cats[d.k].prom;$('#ex').value=COPY.cats[d.k].explain}draw()}}
+ chips('#cw',['他','她'],'w');chips('#cc',['一号情侣','二号情侣'],'c');chips('#cs',COPY.cats.map(function(c){return c.label}),'k');chips('#ct',TONES,'t');chips('#cp',PROMS.map(function(p){return p[0]}),'p');
+ function draw(){var m={w:d.w,c:d.c-1,s:d.k,t:d.t,p:d.p};$('#ctRow').style.display=COPY.cats[d.k].serious?'none':'flex';['w','c','s','t','p'].forEach(function(k){[].forEach.call($('#c'+k).children,function(b,i){b.classList.toggle('on',i==m[k])})});
   $('#cpRow').style.display=d.p==4?'flex':'none';
   var x=cur();$('#pv').innerHTML=apo(x)+'<br><span style="color:#E8505B">＋ '+(x.p==4&&!d.pc?'自己填一个补偿':esc(promText(x))+' 兑换券')+'</span>';
   $('#mini').innerHTML=figHTML(d.w?'f':'m',d.c,'guilty')}
- function cur(){d.n=$('#nm').value;d.pc=$('#pc').value;var c=clean(d);if(d.p==4&&!c.pc){c.p=4;c.pc=''}return c}
- $('#nm').oninput=draw;$('#pc').oninput=draw;
- function link(){var c=clean(cur());return location.origin+location.pathname+'?d='+enc(c)}
+ function cur(){d.n=$('#nm').value;d.pc=$('#pc').value;var ev=$('#ex').value.trim();d.e=(ev&&ev!=COPY.cats[d.k].explain)?ev:'';var c=clean(d);if(d.p==4&&!c.pc){c.p=4;c.pc=''}return c}
+ $('#ex').value=COPY.cats[0].explain;$('#nm').oninput=draw;$('#pc').oninput=draw;
+ function link(){var c=clean(cur());delete c.s;if(!c.e)delete c.e;if(COPY.cats[c.k].serious)c.t=1;return location.origin+location.pathname+'?d='+enc(c)}
  $('#see').onclick=function(){location.href=link()};
  $('#go').onclick=function(){if(d.p==4&&!$('#pc').value.trim()){toast('先写一个补偿吧');$('#pc').focus();return}
   var u=link(),ok=false;
@@ -202,10 +270,11 @@ function recv(d){
  '<div class="ov" id="ovHit"><button class="x" data-x>×</button><h2>打我出气</h2><div class="stage nosel" style="width:auto"><div class="me" id="stg" style="height:100%;position:relative">'+figHTML(g,d.c,'kneel')+'<div class="catch"></div></div></div><div class="cnt" id="cnt">点'+T2+'就能打</div><button class="big" data-x>打够了</button></div>'+
  '<div class="ov" id="ovFine"><button class="x" data-x>×</button><div id="fineA" style="display:flex;flex-direction:column;align-items:center;width:100%"><h2>罚'+T2+'做什么？</h2><div class="pens" id="pens"></div><input class="t" id="penIn" maxlength="20" placeholder="写下你想罚的，20 字以内"><button class="big" id="penGo">开罚单</button></div>'+
  '<div id="fineB" style="display:none;flex-direction:column;align-items:center;width:100%"><img id="tk" alt="罚单"><p class="hint" id="tkh">长按图片保存</p><button class="big" data-x>收下罚单</button></div></div>'+
- '<div class="ov" id="ovWheel"><button class="x" data-x>×</button><h2>转盘抽补偿</h2><div class="ph">🎡 转盘马上就来～<br>先记下：'+T2+'欠你一份惊喜</div><button class="big" data-x>好的</button></div>'+
- '<div class="ov" id="ovTalk"><button class="x" data-x>×</button><h2>听我解释</h2><div class="ph">'+T2+'想说的话马上就来～<br>先听'+T2+'说一句：我真的很在乎你</div><button class="big" data-x>听完了</button></div>'+
+ '<div class="ov" id="ovWheel"><button class="x" data-x>×</button><h2>转盘抽补偿</h2><div class="wh"><div class="pin"></div><div class="disc" id="disc">'+wheelHTML()+'</div><div class="hub"></div></div><div id="whRes">转到哪个，'+T2+'就给你哪个</div><button class="big" id="spin">转一下</button></div>'+
+ '<div class="ov" id="ovTalk"><button class="x" data-x>×</button><h2>听我解释</h2><div class="letter"><div class="to">给 '+name+'：</div>'+esc(expl(d))+'<div class="fr">—— 想你的'+T2+'</div></div><button class="big" data-x>听完了</button></div>'+
+ '<div class="ov" id="ovCalm"><img id="calmImg" alt="冷静卡"><p class="hint">长按图片保存，发给'+T2+'</p><button class="big" id="calmBack">算了，还是原谅你吧</button></div>'+
  '<section class="act" id="a3"><p class="q">原谅'+T2+'吗？</p><div class="stage duo nosel" id="stg3" style="--h:170px"><div class="me">'+figHTML(g,d.c,'kneel')+'</div>'+figHTML(o,d.c,'angry','ot')+'</div><div class="zone" id="zone"><button class="big" id="yes">原谅</button><button id="no">不原谅</button></div>'+
- '<div class="coupon" id="cp"><span class="no">No.'+(Date.now()%100000)+'</span><h3>'+PROMS[d.p][2]+' '+esc(d.p==4?'兑换券':PROMS[d.p][1])+'</h3><div style="font-size:18px;margin:6px 0">'+esc(promText(d))+'</div><div class="who">'+name+' 专用 · 凭此券找'+T2+'兑换</div><div class="sig">长按或截图保存 · 永久有效</div></div></section>'+
+ '<button id="calmL">我还想再气一会儿</button><div class="imgbox" id="cp"><img id="cpImg" alt="和好券"><p class="hint">长按图片保存，发给'+T2+'</p></div></section>'+
  '<div class="foot">软话小人</div><canvas id="cf"></canvas>';
  function go(id){[].forEach.call(document.querySelectorAll('.act'),function(a){a.classList.toggle('on',a.id==id)})}
  $('#env').onclick=function(){squeak();go('a2')};
@@ -214,7 +283,8 @@ function recv(d){
  function mark(k){if(done[k])return;done[k]=1;nd++;document.querySelector('.cd[data-k="'+k+'"]').classList.add('done');bar()}
  var OV={hit:'ovHit',fine:'ovFine',wheel:'ovWheel',talk:'ovTalk'},curK;
  function openOv(k){curK=k;squeak();$('#'+OV[k]).classList.add('on');if(k=='fine'){$('#fineA').style.display='flex';$('#fineB').style.display='none'}}
- function closeOv(){var k=curK;[].forEach.call(document.querySelectorAll('.ov'),function(o){o.classList.remove('on')});if(k=='wheel'||k=='talk')mark(k);if(k=='fine'&&tkDone)mark('fine')}
+ function closeOv(){var k=curK;[].forEach.call(document.querySelectorAll('.ov'),function(o){o.classList.remove('on')});if(k=='talk')mark(k);if(k=='wheel'&&spun)mark('wheel');if(k=='fine'&&tkDone)mark('fine')}
+ var RC=cat(d)?cat(d).rec:'';if(RC)document.querySelector('.cd[data-k="'+RC+'"]').insertAdjacentHTML('beforeend','<em class="tag">推荐</em>');
  [].forEach.call(document.querySelectorAll('.cd'),function(c){c.onclick=function(){openOv(c.dataset.k)}});
  [].forEach.call(document.querySelectorAll('[data-x]'),function(c){c.onclick=closeOv});
  document.addEventListener('contextmenu',function(e){if(e.target.id!='tk')e.preventDefault()});
@@ -230,6 +300,47 @@ function recv(d){
   for(var i=0;i<(RM?2:4);i++){var s=document.createElement('div');s.className='star';s.style.zIndex=4;s.textContent=i%2?'⭐':'✨';s.style.left=x+'px';s.style.top=y+'px';var a=Math.random()*6.28,dd=40+Math.random()*30;s.style.setProperty('--x',Math.cos(a)*dd+'px');s.style.setProperty('--y',Math.sin(a)*dd+'px');stg.appendChild(s);(function(s){setTimeout(function(){s.remove()},650)})(s)}
   $('#cnt').textContent='已经打了 '+hits+' 下'+(hits>=8?'，消气值 +50%':'');
   if(hits>=8)mark('hit')});
+ // ---- 转盘
+ var spun=false,rot=0,prize='';
+ $('#spin').onclick=function(){var W=COPY.wheel,n=W.length,i=Math.floor(Math.random()*n),b=$('#spin');b.disabled=true;squeak();
+  rot+=360*5+(360-(i*360/n+180/n))-(rot%360);$('#disc').style.transform='rotate('+rot+'deg)';$('#whRes').textContent='转呀转…';
+  setTimeout(function(){b.disabled=false;var r=W[i];yay();
+   if(r=='再转一次'){$('#whRes').textContent='再转一次！运气留给你～';b.textContent='再转一下';if(!spun){spun=true}return}
+   prize=r;spun=true;$('#whRes').textContent='🎉 抽中：'+r+'！';b.textContent='收下';b.onclick=closeOv;
+   var c=window.confetti&&confetti.create($('#cf'),{resize:true,useWorker:false});c&&c({particleCount:60,spread:70,origin:{y:.55},colors:['#EE7F92','#FFD36E','#6FA3D8']})},3100)};
+ // ---- 冷静卡
+ $('#calmL').onclick=function(){squeak();drawCard('calm',function(u){$('#calmImg').src=u;$('#ovCalm').classList.add('on')})};
+ $('#calmBack').onclick=function(){$('#ovCalm').classList.remove('on');$('#calmL').style.display='none';yes.style.setProperty('--s',1.6)};
+ function dstr(dt){return dt.getFullYear()+' 年 '+(dt.getMonth()+1)+' 月 '+dt.getDate()+' 日'}
+ function drawCard(kind,cb){var W=750,H=1000,cv=document.createElement('canvas');cv.width=W;cv.height=H;var x=cv.getContext('2d'),F='-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif';
+  var im=new Image();im.onload=function(){paint(im)};im.onerror=function(){paint(null)};im.src=src(g,d.c,kind=='calm'?'guilty':'happy');
+  function rr(X,Y,w,h,r){x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+w,Y,X+w,Y+h,r);x.arcTo(X+w,Y+h,X,Y+h,r);x.arcTo(X,Y+h,X,Y,r);x.arcTo(X,Y,X+w,Y,r);x.closePath()}
+  function wrap(t,X,Y,mw,lh){var line='',ys=Y;for(var i=0;i<t.length;i++){var tt=line+t[i];if(x.measureText(tt).width>mw&&line){x.fillText(line,X,ys);line=t[i];ys+=lh}else line=tt}x.fillText(line,X,ys);return ys}
+  function noEmoji(t){return t.replace(/[\u{1F000}-\u{1FFFF}\u{2600}-\u{27BF}\uFE0F]/gu,'').trim()}
+  function paint(im){var calm=kind=='calm';x.fillStyle=calm?'#E9F0F9':'#FDEBE6';x.fillRect(0,0,W,H);
+   rr(40,40,670,920,36);x.fillStyle=calm?'#F7FAFE':'#FFF1C9';x.fill();x.lineWidth=6;x.setLineDash([18,12]);x.strokeStyle=calm?'#7FA8D8':'#E8505B';x.stroke();x.setLineDash([]);
+   x.textAlign='center';
+   if(calm){x.fillStyle='#4A6E99';x.font='800 84px '+F;x.fillText(COPY.calm.title,W/2,170);
+    if(im){var h=330,w=h*(im.naturalWidth||200)/(im.naturalHeight||280);x.drawImage(im,(W-w)/2,220,w,h)}
+    x.fillStyle='#4A2E22';x.font='800 58px '+F;x.fillText(COPY.calm.line,W/2,640);
+    x.fillStyle='#8C6D60';x.font='32px '+F;x.fillText(COPY.calm.sub,W/2,705);
+    var tm=new Date(Date.now()+864e5);x.fillStyle='#4A6E99';x.font='600 36px '+F;x.fillText('相约：'+dstr(tm),W/2,800);
+    x.fillStyle='#8C6D60';x.font='30px '+F;x.fillText('来自 '+(d.n||'你')+' 的冷静卡',W/2,860);
+    x.fillStyle='#a9bcd6';x.font='24px '+F;x.fillText('软话小人 · 长按保存',W/2,925)}
+   else{x.fillStyle='#E8505B';x.font='800 88px '+F;x.fillText(COPY.coupon.title,W/2,150);
+    x.fillStyle='#8C6D60';x.font='26px '+F;x.fillText('No.'+String(Date.now()%1000000).padStart(6,'0')+'  ·  '+(d.n||'你')+' 专用',W/2,200);
+    if(im){var h2=230,w2=h2*(im.naturalWidth||200)/(im.naturalHeight||280);x.drawImage(im,(W-w2)/2,225,w2,h2)}
+    x.textAlign='left';x.fillStyle='#4A2E22';x.font='600 32px '+F;var ey=wrap('「'+noEmoji(softRaw(d))+'」',95,510,560,48);
+    x.strokeStyle='#E8B9A0';x.lineWidth=3;x.setLineDash([10,10]);x.beginPath();x.moveTo(80,ey+40);x.lineTo(670,ey+40);x.stroke();x.setLineDash([]);
+    var y=ey+100;x.fillStyle='#8C6D60';x.font='30px '+F;x.fillText('承诺：',95,y);x.fillStyle='#E8505B';x.font='800 42px '+F;x.fillText(promText(d),185,y+2);
+    if(prize){y+=60;x.fillStyle='#8C6D60';x.font='30px '+F;x.fillText('转盘加赠：',95,y);x.fillStyle='#E8505B';x.font='800 36px '+F;x.fillText(prize,245,y)}
+    var end=new Date(Date.now()+COPY.coupon.days*864e5);y+=60;x.fillStyle='#8C6D60';x.font='28px '+F;x.fillText(COPY.coupon.days+' 天内有效（至 '+(end.getMonth()+1)+' 月 '+end.getDate()+' 日）',95,y);
+    x.fillStyle='#4A2E22';x.font='600 34px '+F;x.fillText('签字：',95,900);
+    x.save();x.translate(215,900);x.rotate(-.08);x.font='italic 700 76px "Kaiti SC","STKaiti","KaiTi",'+F;x.fillStyle='#2F4A8A';x.fillText(T2,0,0);
+    x.strokeStyle='#2F4A8A';x.lineWidth=4;x.lineCap='round';x.beginPath();x.moveTo(-10,14);x.bezierCurveTo(60,30,120,-8,180,8);x.bezierCurveTo(200,14,190,24,165,22);x.stroke();x.restore();
+    x.save();x.translate(600,780);x.rotate(-.25);x.strokeStyle='rgba(232,80,91,.85)';x.fillStyle='rgba(232,80,91,.85)';x.lineWidth=7;x.beginPath();x.arc(0,0,78,0,7);x.stroke();x.textAlign='center';x.font='900 40px '+F;x.fillText('已和好',0,14);x.restore();
+    x.textAlign='center';x.fillStyle='#c9a896';x.font='24px '+F;x.fillText('凭此券找'+T2+'兑现 · 长按保存',W/2,945)}
+   var u;try{u=cv.toDataURL('image/jpeg',.92)}catch(e){u=''}cb(u)}}
  // ---- 罚单
  var PENS=['写检讨 500 字','学猫叫 10 声','洗一周碗','给我捶背 20 分钟','一周不打游戏','自己填'],pi=0,tkDone=false;
  $('#pens').innerHTML=PENS.map(function(p,i){return '<button class="chip'+(i?'':' on')+'" data-i="'+i+'">'+p+'</button>'}).join('');
@@ -264,9 +375,9 @@ function recv(d){
   var yr=yes.getBoundingClientRect(),zr=zone.getBoundingClientRect(),x,y,k=0;
   do{x=Math.random()*(zw-bw);y=Math.random()*(zh-bh);k++}while(k<30&&x<yr.right-zr.left+6&&x+bw>yr.left-zr.left-6&&y<yr.bottom-zr.top+6&&y+bh>yr.top-zr.top-6);
   no.style.left=x+'px';no.style.top=y+'px'}
- function dodge(e){e.preventDefault();noi++;squeak();no.textContent=NOS[Math.min(noi,NOS.length-1)];yes.style.setProperty('--s',Math.min(1+noi*.18,2.1));placeNo(false)}
+ function dodge(e){e.preventDefault();noi++;squeak();no.textContent=NOS[Math.min(noi,NOS.length-1)];yes.style.setProperty('--s',Math.min(1+noi*.18,2.1));placeNo(false);if(noi>=3)$('#calmL').style.display='block'}
  no.addEventListener('pointerdown',dodge);no.addEventListener('click',function(e){e.preventDefault()});
- yes.onclick=function(){yay();$('#zone').style.display='none';$('#stg3').innerHTML='<div class="me">'+figHTML(g,d.c,'happy')+'</div>'+figHTML(o,d.c,'happy','ot');$('.q').textContent='谢谢你原谅'+T2+'！';$('#cp').classList.add('on');boom()};
+ yes.onclick=function(){yay();$('#zone').style.display='none';$('#stg3').innerHTML='<div class="me">'+figHTML(g,d.c,'happy')+'</div>'+figHTML(o,d.c,'happy','ot');$('.q').textContent='谢谢你原谅'+T2+'！';$('#stg3').style.display='none';$('#calmL').style.display='none';drawCard('coupon',function(u){$('#cpImg').src=u;$('#cp').classList.add('on')});boom()};
  function boom(){var c=window.confetti&&confetti.create($('#cf'),{resize:true,useWorker:false});if(!c)return;var col=['#EE7F92','#6FA3D8','#FFD36E','#9CC28A','#fff'];
   if(RM){c({particleCount:60,spread:90,origin:{y:.5},colors:col,ticks:120});return}
   c({particleCount:120,spread:100,origin:{y:.6},colors:col});setTimeout(function(){c({particleCount:60,angle:60,spread:60,origin:{x:0,y:.7},colors:col});c({particleCount:60,angle:120,spread:60,origin:{x:1,y:.7},colors:col})},250)}
