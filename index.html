@@ -69,6 +69,39 @@ input.t:focus{border-color:#EE7F92}
 .foot{position:absolute;bottom:max(8px,env(safe-area-inset-bottom));font-size:12px;color:#c9b4ac;width:100%;text-align:center;left:0}
 #cf{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:30}
 @media (max-height:700px){.stage{--h:190px;margin:8px 0 2px}.bubble{max-height:34vh;overflow:hidden;font-size:15px;padding:9px 12px}.zone{height:190px}.pv .mini{height:72px}}
+
+/* phase1 menu */
+#a2{justify-content:flex-start;gap:0}
+#a2 .bubble{font-size:14px;line-height:1.55;padding:9px 12px;max-height:22vh}
+#a2 .stage{--h:150px;margin:12px 0 2px;min-height:110px}
+.ttl{font-size:20px;font-weight:800;margin:4px 0 6px}
+.bar{width:100%;max-width:360px;display:flex;align-items:center;gap:8px;font-size:13px;color:#8C6D60}
+.bar .tr{flex:1;height:14px;border-radius:7px;background:#FDEBE6;border:2px solid #f0dcd4;overflow:hidden}
+.bar .fl{height:100%;width:0;background:linear-gradient(90deg,#F7A7A6,#EE7F92);border-radius:7px;transition:width .5s cubic-bezier(.3,1.4,.5,1)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;max-width:360px;margin-top:8px}
+.cd{position:relative;background:#fff;border:2px solid #f0dcd4;border-radius:16px;min-height:64px;padding:6px 4px;font-size:14px;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;box-shadow:0 3px 0 #f0dcd4}
+.cd i{font-style:normal;font-size:22px}
+.cd small{font-weight:400;font-size:11px;color:#8C6D60}
+.cd.main{grid-column:1/-1;flex-direction:row;gap:10px;min-height:62px;font-size:18px;background:#FDEBE6;border-color:#EE7F92;color:#E8505B;box-shadow:0 3px 0 #f0c3cc}
+.cd.main i{font-size:28px}
+.cd:active{transform:translateY(2px);box-shadow:none}
+.cd.done::after{content:"✓";position:absolute;right:6px;top:4px;width:20px;height:20px;border-radius:10px;background:#EE7F92;color:#fff;font-size:13px;line-height:20px}
+#fgo{display:none;width:100%;max-width:360px;margin-top:10px;flex:0 0 auto}
+#fgo.on{display:block;animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
+.ov{position:fixed;inset:0;z-index:20;background:#FFF6EF;display:none;flex-direction:column;align-items:center;justify-content:center;padding:max(14px,env(safe-area-inset-top)) 18px max(14px,env(safe-area-inset-bottom));text-align:center}
+.ov.on{display:flex;animation:fin .3s ease}
+.ov .x{position:absolute;right:12px;top:max(10px,env(safe-area-inset-top));width:44px;height:44px;border-radius:22px;background:#fff;border:2px solid #f0dcd4;font-size:20px;color:#8C6D60}
+.ov h2{margin:0 0 8px;font-size:21px}
+.ov .big{flex:0 0 auto;width:100%;max-width:340px;margin-top:10px}
+#ovHit .stage{--h:300px;margin:10px 0}
+.catch{position:absolute;inset:0;z-index:3;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.nosel{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.pens{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:360px}
+.pens .chip{font-size:15px}
+#penIn{display:none;width:100%;max-width:340px;margin-top:8px;flex:0 0 auto}
+#tk{display:none;width:auto;max-width:100%;max-height:calc(100vh - 190px);border-radius:12px;box-shadow:0 6px 18px rgba(74,46,34,.18);-webkit-touch-callout:default;-webkit-user-select:auto;user-select:auto}
+.ph{font-size:16px;line-height:1.7;background:#fff;border:2px dashed #f0dcd4;border-radius:16px;padding:14px;max-width:340px}
+@media (max-height:700px){#a2 .stage{--h:118px;margin:10px 0 0;min-height:90px}#ovHit .stage{--h:240px}.cd{min-height:56px}.cd.main{min-height:52px}.ttl{font-size:18px;margin:2px 0 4px}}
 @media (prefers-reduced-motion:reduce){.env{animation:none}.act.on{animation:none}}
 </style></head><body><div id="app"></div><div id="toast"></div>
 <div id="linkBox"><div class="card"><b>长按下面的链接复制</b><div class="lk" id="lk"></div><div class="hint">复制好就去发给 TA 吧</div><div class="btns" style="margin-top:10px"><button class="big" id="lkOk">好的</button></div></div></div>
@@ -161,27 +194,70 @@ function recv(d){
  var g=d.w?'f':'m',o=d.w?'m':'f',name=esc(d.n||'你'),T2=ta(d),hits=0,noi=0;
  app.innerHTML=
  '<section class="act on" id="a1"><p class="say">有人想对 '+name+' 说…</p><div class="env" id="env"><svg viewBox="0 0 230 160"><rect x="6" y="6" width="218" height="148" rx="16" fill="#fff" stroke="#fff" stroke-width="10"/><rect x="6" y="6" width="218" height="148" rx="16" fill="#FDEBE6" stroke="'+INK+'" stroke-width="4"/><path d="M8 14 L115 92 L222 14" fill="none" stroke="'+INK+'" stroke-width="4" stroke-linejoin="round"/><path d="M115 96 c-10 -14 -30 -6 -20 10 l20 18 l20 -18 c10 -16 -10 -24 -20 -10z" fill="#EE7F92" stroke="'+INK+'" stroke-width="3"/></svg></div><p class="hint">点信封打开</p></section>'+
- '<section class="act" id="a2"><div class="bubble">'+apo(d)+'</div><div class="stage duo"><div class="me" id="stg">'+figHTML(g,d.c,'guilty')+'</div>'+figHTML(o,d.c,'angry','ot')+'</div><div class="cnt" id="cnt">不开心的话，先打我出出气 👇</div><div class="tease" id="tz">还有一份补偿，等你原谅后领取 🎁</div><div class="acts2"><button class="big alt" id="hitb">先打我出出气</button><button class="big" id="nx">下一步</button></div></section>'+
- '<section class="act" id="a3"><p class="q">原谅'+T2+'吗？</p><div class="stage duo" id="stg3" style="--h:170px"><div class="me">'+figHTML(g,d.c,'kneel')+'</div>'+figHTML(o,d.c,'angry','ot')+'</div><div class="zone" id="zone"><button class="big" id="yes">原谅</button><button id="no">不原谅</button></div>'+
+ '<section class="act" id="a2"><div class="bubble">'+apo(d)+'</div><div class="stage duo nosel"><div class="me">'+figHTML(g,d.c,'guilty')+'<div class="catch"></div></div>'+figHTML(o,d.c,'angry','ot')+'<div class="catch"></div></div>'+
+ '<p class="ttl">你想怎么处置我？</p><div class="bar"><span>消气值</span><div class="tr"><div class="fl" id="fl"></div></div><span id="flt">0%</span></div>'+
+ '<div class="tease" id="tz">还有一份补偿，等你原谅后领取 🎁</div>'+
+ '<div class="grid"><button class="cd main" data-k="hit"><i>👊</i>打我出气<small>随便打，打到你开心</small></button><button class="cd" data-k="fine"><i>📝</i>罚我<small>开张罚单</small></button><button class="cd" data-k="wheel"><i>🎡</i>转盘<small>抽个补偿</small></button><button class="cd" data-k="talk"><i>💬</i>听我解释<small>就一句话</small></button></div>'+
+ '<button class="big" id="fgo">原谅'+T2+'吗？</button></section>'+
+ '<div class="ov" id="ovHit"><button class="x" data-x>×</button><h2>打我出气</h2><div class="stage nosel" style="width:auto"><div class="me" id="stg" style="height:100%;position:relative">'+figHTML(g,d.c,'kneel')+'<div class="catch"></div></div></div><div class="cnt" id="cnt">点'+T2+'就能打</div><button class="big" data-x>打够了</button></div>'+
+ '<div class="ov" id="ovFine"><button class="x" data-x>×</button><div id="fineA" style="display:flex;flex-direction:column;align-items:center;width:100%"><h2>罚'+T2+'做什么？</h2><div class="pens" id="pens"></div><input class="t" id="penIn" maxlength="20" placeholder="写下你想罚的，20 字以内"><button class="big" id="penGo">开罚单</button></div>'+
+ '<div id="fineB" style="display:none;flex-direction:column;align-items:center;width:100%"><img id="tk" alt="罚单"><p class="hint" id="tkh">长按图片保存</p><button class="big" data-x>收下罚单</button></div></div>'+
+ '<div class="ov" id="ovWheel"><button class="x" data-x>×</button><h2>转盘抽补偿</h2><div class="ph">🎡 转盘马上就来～<br>先记下：'+T2+'欠你一份惊喜</div><button class="big" data-x>好的</button></div>'+
+ '<div class="ov" id="ovTalk"><button class="x" data-x>×</button><h2>听我解释</h2><div class="ph">'+T2+'想说的话马上就来～<br>先听'+T2+'说一句：我真的很在乎你</div><button class="big" data-x>听完了</button></div>'+
+ '<section class="act" id="a3"><p class="q">原谅'+T2+'吗？</p><div class="stage duo nosel" id="stg3" style="--h:170px"><div class="me">'+figHTML(g,d.c,'kneel')+'</div>'+figHTML(o,d.c,'angry','ot')+'</div><div class="zone" id="zone"><button class="big" id="yes">原谅</button><button id="no">不原谅</button></div>'+
  '<div class="coupon" id="cp"><span class="no">No.'+(Date.now()%100000)+'</span><h3>'+PROMS[d.p][2]+' '+esc(d.p==4?'兑换券':PROMS[d.p][1])+'</h3><div style="font-size:18px;margin:6px 0">'+esc(promText(d))+'</div><div class="who">'+name+' 专用 · 凭此券找'+T2+'兑换</div><div class="sig">长按或截图保存 · 永久有效</div></div></section>'+
  '<div class="foot">软话小人</div><canvas id="cf"></canvas>';
  function go(id){[].forEach.call(document.querySelectorAll('.act'),function(a){a.classList.toggle('on',a.id==id)})}
  $('#env').onclick=function(){squeak();go('a2')};
- var stg=$('#stg'),hitMode=false,rt,seq=[];preload(d.c);
+ var stg=$('#stg'),hitMode=true,rt,seq=[],done={},nd=0;preload(d.c);
+ function bar(){var v=Math.min(nd,2)*50;$('#fl').style.width=v+'%';$('#flt').textContent=v+'%';if(v>=50)$('#tz').classList.add('on');if(v>=100)$('#fgo').classList.add('on')}
+ function mark(k){if(done[k])return;done[k]=1;nd++;document.querySelector('.cd[data-k="'+k+'"]').classList.add('done');bar()}
+ var OV={hit:'ovHit',fine:'ovFine',wheel:'ovWheel',talk:'ovTalk'},curK;
+ function openOv(k){curK=k;squeak();$('#'+OV[k]).classList.add('on');if(k=='fine'){$('#fineA').style.display='flex';$('#fineB').style.display='none'}}
+ function closeOv(){var k=curK;[].forEach.call(document.querySelectorAll('.ov'),function(o){o.classList.remove('on')});if(k=='wheel'||k=='talk')mark(k);if(k=='fine'&&tkDone)mark('fine')}
+ [].forEach.call(document.querySelectorAll('.cd'),function(c){c.onclick=function(){openOv(c.dataset.k)}});
+ [].forEach.call(document.querySelectorAll('[data-x]'),function(c){c.onclick=closeOv});
+ document.addEventListener('contextmenu',function(e){if(e.target.id!='tk')e.preventDefault()});
+ $('#fgo').onclick=function(){go('a3');placeNo()};
  function setFig(p,c){var f=stg.querySelector('.fig');f.src=src(g,d.c,p);if(c){f.classList.remove('hit','shake');void f.offsetWidth;f.classList.add(c)}}
- function enterHit(){if(hitMode)return;hitMode=true;setFig('kneel');$('#hitb').textContent='打够了';$('#hitb').onclick=function(){go('a3')};$('#cnt').textContent='点'+T2+'就能打'}
- $('#hitb').onclick=enterHit;
- stg.addEventListener('pointerdown',function(e){enterHit();
+ stg.addEventListener('pointerdown',function(e){e.preventDefault();
   hits++;bonk();seq.forEach(clearTimeout);seq=[];
   ['hit_1','hit_2','hit_3','hit_4'].forEach(function(p,i){seq.push(setTimeout(function(){setFig(p,i==1?'hit':(i==0?'shake':''))},i*150))});
   seq.push(setTimeout(function(){setFig('kneel')},4*150+250));
   if(navigator.vibrate)try{navigator.vibrate(15)}catch(x){}
   var r=stg.getBoundingClientRect(),x=(e.clientX||r.left+r.width/2)-r.left,y=(e.clientY||r.top+r.height/3)-r.top;
-  var p=document.createElement('div');p.className='fly';p.textContent=PLEAS[(hits-1)%PLEAS.length];p.style.left=Math.max(50,Math.min(r.width-50,x))+'px';p.style.top=Math.max(0,y-30)+'px';stg.appendChild(p);setTimeout(function(){p.remove()},1150);
-  for(var i=0;i<(RM?2:4);i++){var s=document.createElement('div');s.className='star';s.textContent=i%2?'⭐':'✨';s.style.left=x+'px';s.style.top=y+'px';var a=Math.random()*6.28,dd=40+Math.random()*30;s.style.setProperty('--x',Math.cos(a)*dd+'px');s.style.setProperty('--y',Math.sin(a)*dd+'px');stg.appendChild(s);(function(s){setTimeout(function(){s.remove()},650)})(s)}
-  $('#cnt').textContent='已经打了 '+hits+' 下';
-  if(hits>=8)$('#tz').classList.add('on')});
- $('#nx').onclick=function(){go('a3');placeNo()};
+  var p=document.createElement('div');p.className='fly';p.style.zIndex=4;p.textContent=PLEAS[(hits-1)%PLEAS.length];p.style.left=Math.max(50,Math.min(r.width-50,x))+'px';p.style.top=Math.max(0,y-30)+'px';stg.appendChild(p);setTimeout(function(){p.remove()},1150);
+  for(var i=0;i<(RM?2:4);i++){var s=document.createElement('div');s.className='star';s.style.zIndex=4;s.textContent=i%2?'⭐':'✨';s.style.left=x+'px';s.style.top=y+'px';var a=Math.random()*6.28,dd=40+Math.random()*30;s.style.setProperty('--x',Math.cos(a)*dd+'px');s.style.setProperty('--y',Math.sin(a)*dd+'px');stg.appendChild(s);(function(s){setTimeout(function(){s.remove()},650)})(s)}
+  $('#cnt').textContent='已经打了 '+hits+' 下'+(hits>=8?'，消气值 +50%':'');
+  if(hits>=8)mark('hit')});
+ // ---- 罚单
+ var PENS=['写检讨 500 字','学猫叫 10 声','洗一周碗','给我捶背 20 分钟','一周不打游戏','自己填'],pi=0,tkDone=false;
+ $('#pens').innerHTML=PENS.map(function(p,i){return '<button class="chip'+(i?'':' on')+'" data-i="'+i+'">'+p+'</button>'}).join('');
+ [].forEach.call($('#pens').children,function(b){b.onclick=function(){pi=+b.dataset.i;[].forEach.call($('#pens').children,function(x,i){x.classList.toggle('on',i==pi)});$('#penIn').style.display=pi==5?'block':'none';if(pi==5)$('#penIn').focus()}});
+ $('#penGo').onclick=function(){var t=pi==5?$('#penIn').value.trim().slice(0,20):PENS[pi];if(!t){toast('先写下要罚什么吧');return}bonk();
+  ticket(t,function(u){$('#tk').src=u;$('#tk').style.display='block';$('#fineA').style.display='none';$('#fineB').style.display='flex';tkDone=true})};
+ function ticket(pen,cb){var W=750,H=1000,cv=document.createElement('canvas');cv.width=W;cv.height=H;var x=cv.getContext('2d'),F='-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif';
+  var im=new Image();im.onload=function(){paint(im)};im.onerror=function(){paint(null)};im.src=src(g,d.c,'kneel');
+  function rr(X,Y,w,h,r){x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+w,Y,X+w,Y+h,r);x.arcTo(X+w,Y+h,X,Y+h,r);x.arcTo(X,Y+h,X,Y,r);x.arcTo(X,Y,X+w,Y,r);x.closePath()}
+  function wrap(t,X,Y,mw,lh){var line='',ys=Y;for(var i=0;i<t.length;i++){var tt=line+t[i];if(x.measureText(tt).width>mw&&line){x.fillText(line,X,ys);line=t[i];ys+=lh}else line=tt}x.fillText(line,X,ys);return ys}
+  function paint(im){x.fillStyle='#FDEBE6';x.fillRect(0,0,W,H);
+   rr(40,40,670,920,36);x.fillStyle='#FFF1C9';x.fill();x.lineWidth=6;x.setLineDash([18,12]);x.strokeStyle='#E8505B';x.stroke();x.setLineDash([]);
+   x.fillStyle='#FDEBE6';[[40,330],[710,330]].forEach(function(p){x.beginPath();x.arc(p[0],p[1],28,0,7);x.fill()});
+   x.strokeStyle='#E8B9A0';x.lineWidth=3;x.setLineDash([10,10]);x.beginPath();x.moveTo(80,330);x.lineTo(670,330);x.stroke();x.setLineDash([]);
+   x.textAlign='center';x.fillStyle='#E8505B';x.font='800 96px '+F;x.fillText('罚  单',W/2,160);
+   x.fillStyle='#8C6D60';x.font='28px '+F;x.fillText('No.'+String(Date.now()%1000000).padStart(6,'0')+'  ·  软话小人认罚处',W/2,215);
+   x.fillStyle='#4A2E22';x.font='600 34px '+F;x.fillText('受罚人：'+(d.w?'她':'他')+'（已自愿认罚）',W/2,285);
+   if(im){var h=330,w=h*(im.naturalWidth||200)/(im.naturalHeight||280);x.drawImage(im,90,350,w,h)}
+   x.textAlign='left';x.fillStyle='#8C6D60';x.font='30px '+F;x.fillText('罚：',380,420);
+   x.fillStyle='#E8505B';x.font='800 50px '+F;var ey=wrap(pen,380,490,300,64);
+   x.fillStyle='#8C6D60';x.font='28px '+F;x.fillText('乖乖执行，监督到底',380,Math.max(ey+60,610));
+   x.strokeStyle='#E8B9A0';x.lineWidth=3;x.setLineDash([10,10]);x.beginPath();x.moveTo(80,720);x.lineTo(670,720);x.stroke();x.setLineDash([]);
+   var dt=new Date(),ds=dt.getFullYear()+' 年 '+(dt.getMonth()+1)+' 月 '+dt.getDate()+' 日';
+   x.fillStyle='#4A2E22';x.font='600 34px '+F;x.fillText('开单人：'+(d.n||'你'),100,790);x.fillText('日期：'+ds,100,850);
+   x.save();x.translate(590,800);x.rotate(-.28);x.strokeStyle='rgba(232,80,91,.85)';x.fillStyle='rgba(232,80,91,.85)';x.lineWidth=8;x.beginPath();x.arc(0,0,82,0,7);x.stroke();x.lineWidth=3;x.beginPath();x.arc(0,0,69,0,7);x.stroke();
+   x.textAlign='center';x.font='900 42px '+F;x.fillText('已认罚',0,16);x.restore();
+   x.textAlign='center';x.fillStyle='#c9a896';x.font='24px '+F;x.fillText('凭此单监督执行 · 长按保存',W/2,925);
+   var u;try{u=cv.toDataURL('image/jpeg',.92)}catch(e){u=''}cb(u)}}
  var zone=$('#zone'),no=$('#no'),yes=$('#yes');
  function placeNo(first){var zw=zone.clientWidth,zh=zone.clientHeight,bw=no.offsetWidth,bh=no.offsetHeight;
   if(first!==false&&noi==0){no.style.left=(zw-bw)/2+'px';no.style.top=(zh-bh-4)+'px';return}
