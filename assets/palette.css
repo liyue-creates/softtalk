@@ -1,0 +1,13 @@
+:root{
+  --bg:#FFF6EF;          /* page background, warm cream */
+  --bg-soft:#FDEBE6;     /* section tint */
+  --btn-primary:#EE7F92; /* 原谅 button (pink-red family) */
+  --btn-primary-text:#FFFFFF;
+  --btn-secondary:#DCE8F6;/* 不原谅 button (pale blue) */
+  --btn-secondary-text:#4A6E99;
+  --text:#4A2E22;        /* main text = character outline brown */
+  --text-2:#8C6D60;      /* secondary text */
+  --coupon-bg:#FFF1C9;   /* 兑换券 card */
+  --coupon-accent:#E8505B;/* coupon border / stamp */
+  --boy:#7FA8D8; --girl:#F08B9C; --blush:#F7A7A6; --tear:#8CCBF0;
+}
