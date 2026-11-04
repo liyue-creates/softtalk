@@ -130,6 +130,32 @@ input.t:focus{border-color:#EE7F92}
 .del{flex:0 0 38px;height:38px;border-radius:19px;background:#FDEBE6;color:#E8505B;font-size:18px}.del[disabled]{opacity:.35}
 .edf{display:flex;align-items:center;gap:8px;margin-top:4px}.add{min-height:36px;padding:0 14px;border-radius:18px;border:2px dashed #EE7F92;color:#E8505B;font-size:14px}.add[disabled]{opacity:.4}.edf .ghint{margin:0}
 .pmw{display:flex;gap:8px;margin:2px 0 6px}#pick{display:none;text-align:center;padding:10px 4px}#pick.on{display:block}#pick .pq{font-size:19px;font-weight:800;color:#E8505B;margin:0}#pick .ps{font-size:13px;color:#8C6D60;margin:4px 0 10px}#pick .pens{margin:0 auto}
+.swc{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;margin:4px 0 6px;padding:12px 14px;border-radius:16px;background:#FDEBE6;border:2px solid #EE7F92;box-shadow:0 3px 0 #f0c3cc;text-align:left;position:relative}
+.swc b{color:#E8505B;font-size:16px}.swc span{color:#8C6D60;font-size:13px;max-width:78%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.swc i{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-style:normal;background:#E8505B;color:#fff;border-radius:14px;padding:5px 10px;font-size:13px}
+.bd{position:fixed;inset:0;z-index:30;background:#FFF6EF;display:none;overflow-y:auto;-webkit-overflow-scrolling:touch}.bd.on{display:block;animation:fin .3s ease}
+.bdi{max-width:420px;margin:0 auto;padding:max(12px,env(safe-area-inset-top)) 18px max(20px,env(safe-area-inset-bottom));text-align:left}
+.bdt{display:flex;align-items:center;justify-content:space-between;height:40px}.dots i{display:inline-block;width:22px;height:5px;border-radius:3px;background:#f0dcd4;margin-right:5px}.dots i.on{background:#EE7F92}.bx{font-size:22px;width:40px;height:40px;color:#8C6D60}
+.bin{background:#fff;border-radius:14px;padding:10px 12px;font-size:14px;color:#8C6D60;margin:4px 0 10px}.bd h3{font-size:18px;color:#4A2E22;margin:6px 0}.bq{font-size:14px;color:#8C6D60;margin:0 0 10px;line-height:1.6}.bq.sm{font-size:13px;margin:10px 0 6px}
+.ta{width:100%;min-height:110px;border-radius:14px;border:2px solid #f0dcd4;padding:10px 12px;font:inherit;font-size:16px;line-height:1.6;color:#4A2E22;background:#fff;resize:none;box-sizing:border-box}.ta.lt{min-height:260px}.ta:focus{outline:none;border-color:#EE7F92}
+.chips.fe,.chips.en{margin:0 0 10px}.chips.en .chip{text-align:left;height:auto;min-height:34px;padding:6px 12px;line-height:1.4}
+.wn{background:#FFF3C4;border-radius:12px;padding:8px 12px;margin:8px 0;font-size:13px;color:#7a5a14;line-height:1.6}.wn p{margin:2px 0}.rw{margin-top:4px;padding:5px 12px;border-radius:14px;background:#fff;color:#b07a00;font-size:13px;border:1px solid #f0d27a}
+.tp{display:block;margin:10px 0 0;color:#E8505B;font-size:14px;padding:6px 0}.tps{display:none;background:#fff;border-radius:14px;padding:6px 12px 8px;font-size:13.5px;color:#4A2E22;line-height:1.7}.tps.on{display:block}.tps ul{margin:4px 0;padding-left:18px}.bex{color:#8C6D60;margin:6px 0 0}
+.bnav{display:flex;gap:10px;margin-top:14px}.bnav .big{flex:1;margin:0}.bnav .sec{flex:0 0 auto;padding:0 16px;border-radius:24px;border:2px solid #f0dcd4;background:#fff;color:#8C6D60;font-size:15px;min-height:48px}.cnt{text-align:right;font-size:12px;color:#b9a59c;margin:4px 2px 0}
+.lw{position:relative;width:300px;max-width:88vw;height:230px;margin:60px auto 6px;perspective:800px;transition:height .5s ease}
+.lenv{position:absolute;inset:0;top:auto;height:180px;bottom:0}
+.lback{position:absolute;inset:0;background:#d9a874;border-radius:8px;box-shadow:0 8px 18px rgba(74,46,34,.18)}
+.lfront{position:absolute;inset:0;border-radius:8px;background:linear-gradient(to top right,#e7bb88 50%,transparent 50.5%) left/50.5% 100% no-repeat,linear-gradient(to top left,#e2b27d 50%,transparent 50.5%) right/50.5% 100% no-repeat;pointer-events:none;z-index:3;transition:opacity .4s ease}
+.lflap{position:absolute;left:0;right:0;top:0;height:100px;background:linear-gradient(to bottom right,#cf9c66 50%,transparent 50.5%) left/50.5% 100% no-repeat,linear-gradient(to bottom left,#cf9c66 50%,transparent 50.5%) right/50.5% 100% no-repeat;transform-origin:top;transition:transform .45s ease,opacity .3s ease .8s;z-index:4}
+.seal{position:absolute;left:50%;top:78px;width:54px;height:54px;margin-left:-27px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f07a84,#c9333f 70%);color:#ffe9e0;font-weight:900;font-size:20px;box-shadow:0 0 0 4px rgba(201,51,63,.35),0 3px 6px rgba(0,0,0,.2);z-index:5;transition:opacity .25s ease,transform .25s ease;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.07)}}
+.paper{position:absolute!important;left:14px;right:14px;top:10px;height:150px;overflow:hidden;z-index:2;transform:rotate(-.5deg);opacity:0;transition:transform .8s cubic-bezier(.2,.8,.3,1) .15s,opacity .2s ease .15s}
+.letter.paper{max-width:none;padding:16px 16px 12px;background-color:#fffdf8;font-family:"Kaiti SC","STKaiti","KaiTi","楷体",serif;font-size:17px}
+.letter.paper p{margin:0 0 4px}.paper .fr{opacity:0;transition:opacity .4s}.paper .fr.on{opacity:1}
+.lw.open .lflap{transform:rotateX(180deg);opacity:0;z-index:1}.lw.open .seal{opacity:0;transform:scale(.6);animation:none;pointer-events:none}.lw.open .paper{opacity:1;transform:translateY(-95px) rotate(-.5deg)}.lw.read .paper{opacity:1}
+.lw.read{height:auto;margin-top:6px}.lw.read .lenv{position:relative;height:auto}.lw.read .lback,.lw.read .lfront,.lw.read .lflap,.lw.read .seal{display:none}
+.lw.read .paper{position:relative!important;left:0;right:0;top:0;height:auto;max-height:calc(100vh - 230px);overflow-y:auto;transform:rotate(-.5deg);animation:fin .35s ease}
+.lbt{display:none;flex-direction:column;align-items:center;width:100%;max-width:330px;margin-top:10px}.lbt.on{display:flex;animation:fin .4s ease}.lbt .big{width:100%;flex:0 0 auto}.lnk{margin-top:6px;padding:8px;font-size:14px;color:#8C6D60;text-decoration:underline}
+@media (prefers-reduced-motion:reduce){.seal{animation:none}.paper,.lflap,.lbt.on,.lw.read .paper{transition:none;animation:none}}
 @media (prefers-reduced-motion:reduce){.env{animation:none}.act.on{animation:none}}
 </style></head><body><div id="app"></div><div id="toast"></div>
 <div id="linkBox"><div class="card"><b>长按下面的链接复制</b><div class="lk" id="lk"></div><div class="hint">复制好就去发给 TA 吧</div><div class="btns" style="margin-top:10px"><button class="big" id="lkOk">好的</button></div></div></div>
@@ -202,6 +228,37 @@ var COPY={
  coupon:{title:'和好券',days:7,valid:'随时有效，先从这 7 天兑现',stamp:'收下啦'},
  ui:{teaser:'还有一份补偿已经备好，随时给你 🎁',thanks:'谢谢你愿意听我说完',talkSub:'我想好好说给你听',wheelName:'转盘抽惊喜',wheelSub:'主补偿照给，再加一份',pick:'你来点一个：想要哪个？'}
 };
+// ==== 「我来写」四步引导（apology_builder.md） ====
+COPY.build={
+ intro:'别急着说对不起，先陪我把这件事想清楚。四小步，写不出来就点下面的提示 👇',
+ steps:[
+  {t:'第1步｜那会儿，我具体做了什么？',q:'像监控录像一样，把你做的事说出来，只说动作，不说原因。',tips:['那天几点、在哪、你做了什么或者没做什么？','对方当时在等你做什么？（等回消息 / 等你到 / 等你站她那边）','如果对方来描述这件事，TA会怎么说？'],ex:'昨晚你给我发了三条消息，我在打游戏，看到了没回，一直到十二点才回了个"嗯"。'},
+  {t:'第2步｜那一刻，TA心里可能是什么感受？',q:'换到TA的位置想一下，TA当时可能是什么心情？在意的到底是什么？',tips:['如果是你被这样对待，第一反应会是什么？','TA生气的背后，可能是在问"我在你心里重不重要"吗？','TA是不是之前就提过类似的事？'],ex:'你一个人等着，可能觉得自己不被放在心上，像是我心里有比你更重要的事。'},
+  {t:'第3步｜这件事里，我的责任',q:'不找理由，说一句你认的部分。哪怕你觉得自己只错了一点，也先把那一点认下来。',tips:['你本来可以怎么做，结果就会不一样？','如果只能说一句"是我…"，你会说什么？'],ex:'看到消息不回是我的问题，你的消息不该排在游戏后面。'},
+  {t:'第4步｜接下来我会怎么做？',q:'给一个看得见、做得到的行动，再加一个现在就能兑现的小补偿。',tips:['下次再遇到同样的情况，你具体会怎么做？','有没有一件今天/这周就能做的事？','这个承诺TA能检查得到吗？'],ex:'以后打游戏前我先跟你说一声，看到消息最晚十分钟回。今晚请你喝奶茶，你选。'}],
+ feel:[['被晾着','不安','觉得自己不重要','一个人等很委屈'],['失望','白期待','被排在后面','计划被打乱'],['被刺痛','难堪','觉得不被尊重','心寒'],['失落','觉得只有自己在乎','被忽视'],['不安','吃醋','没有安全感','怀疑'],['累','被当成理所当然','一直在忍','委屈'],['心里有事没被看见','累','委屈说不出口']],
+ fix:['说明去向；固定时间内回复','补一次约会，提前确认时间','收回那句话；情绪上头时先停一下','补过一次；设提醒','主动讲清楚；说明以后的分寸','具体接手某件事','先听TA说；陪着不催'],
+ guess:'我也不确定，猜一下',
+ ends:['你想什么时候理我都可以，我等你。','愿意的话，再给我一次机会？']
+};
+var WARN=[
+ {re:/(但是|可是|不过|只是)/,tip:"「但是」后面的话再真，也会让前面的道歉打折。原因可以以后再讲，先删掉试试。",rep:function(t){return t.replace(/(但是|可是|不过|只是)/g,'')}},
+ {re:/(如果|要是|假如).{0,8}(你觉得|让你|伤到|不舒服|不开心)/,tip:"「如果你觉得…」听起来像怪TA太敏感。直接说「我做的××让你难受了」。",rep:function(t){return t.replace(/(如果|要是|假如)你觉得/g,'你可能觉得').replace(/(如果|要是|假如)(让你|伤到)/g,'我$2')}},
+ {re:/(让你|惹你)(不高兴|不开心|生气)了/,tip:"这句在道歉TA的反应。换成道歉你做的那件事。",rep:function(t){return t.replace(/(让你|惹你)(不高兴|不开心|生气)了/g,'我做的这件事让你难受了')}},
+ {re:/(你也|你不也|你自己|你上次|你还不是)/,tip:"翻对方的账会让道歉变回吵架，这些留到以后好好聊。"},
+ {re:/(你太敏感|想多了|小题大做|至于吗|有必要吗)/,tip:"评价TA的感受，TA会更气。试试「你会难受，我能理解」。",rep:function(t){return t.replace(/(你太敏感了?|你?想多了|小题大做|至于吗|有必要吗)/g,'你会难受，我能理解')}},
+ {re:/(我又不是故意|我也没办法|我也不想|没想到|我以为)/,tip:"你的本意可以讲，但TA受的影响是真的。先写影响。"},
+ {re:/(大家都|谁都会|男生都|女生都|正常人)/,tip:"别拿别人比，这件事只关于你们俩。"},
+ {re:/(我都道歉了|还要怎样|别生气了|别闹了|冷静点|差不多得了|够了吧)/,tip:"催TA消气会适得其反，原不原谅由TA决定。",rep:function(t){return t.replace(/[，,]?(我都道歉了|还要怎样|别生气了|别闹了|冷静点|差不多得了|够了吧)[了吧嘛！!？?]*/g,'')}},
+ {re:/(我是废物|我不配|我该死|我真没用|我活该)/,tip:"太狠地骂自己，TA反倒要来安慰你。说清楚错在哪就够了。",rep:function(t){return t.replace(/(我是废物|我不配|我该死|我真没用|我活该)/g,'是我做得不好')}},
+ {re:/(再也不会|永远不会|一定改|保证|尽量)/,tip:"空承诺很难让人信，换成一个能看到的具体动作。",rep:function(t){return t.replace(/(再也不会|永远不会|一定改|保证|尽量)/g,'以后我会')}},
+ {re:/(算我的错|就当是我的错|都怪我行了吧|行行行)/,tip:"这句听着像不服气，换成「是我××做得不对」。",rep:function(t){return t.replace(/(算我的错|就当是我的错|都怪我行了吧|行行行)/g,'是我做得不对')}},
+ {re:/^.{0,6}$/,tip:"再多写一点细节，越具体TA越能感觉你真的想过。"}
+];
+function warnsOf(t){t=String(t||'').trim();if(!t)return[];return WARN.filter(function(w){return w.re.test(t)})}
+// 第3步 AI 帮我写 的接入点：aiLetter(input, cb) 以后调用 Worker /api/letter，cb(letter) 后走同一个编辑预览。
+var aiLetter=null;
+var MAXL=300;
 var PLEAS=['我是🐷','罪该万死','陛下恕罪','再也不敢了','小的知错','打得好！','轻点轻点','是我不好','我是笨蛋','我检讨！','求求了🥺','以后都听你的'];
 var NOS=['不原谅','别嘛～','再想想嘛','好不好嘛～','再给我一次机会嘛','抱抱我嘛～'];
 // ---- final art: assets/set{c}_{boy|girl}_{pose}.svg (swap files by name)
@@ -214,7 +271,7 @@ function preload(set){['m','f'].forEach(function(g){POSES.forEach(function(p){va
 // ---- url codec (base64url of utf-8 JSON)
 function enc(o){var b=new TextEncoder().encode(JSON.stringify(o)),s='';for(var i=0;i<b.length;i++)s+=String.fromCharCode(b[i]);return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
 function dec(t){try{t=t.replace(/-/g,'+').replace(/_/g,'/');var s=atob(t),b=new Uint8Array(s.length);for(var i=0;i<s.length;i++)b[i]=s.charCodeAt(i);return JSON.parse(new TextDecoder().decode(b))}catch(e){return null}}
-function clean(d){d=d||{};var r={k:(d.k!==undefined&&+d.k>=0&&+d.k<COPY.cats.length)?+d.k:-1,e:String(d.e||'').trim().slice(0,60),n:String(d.n||'').trim().slice(0,12),w:d.w==1?1:0,c:d.c==2?2:1,s:[0,1,2].indexOf(+d.s)>=0?+d.s:0,t:[0,1,2].indexOf(+d.t)>=0?+d.t:0,p:[0,1,2,3,4].indexOf(+d.p)>=0?+d.p:0};
+function clean(d){d=d||{};var r={k:(d.k!==undefined&&+d.k>=0&&+d.k<COPY.cats.length)?+d.k:-1,e:String(d.e||'').trim().slice(0,60),l:String(d.l||'').replace(/\r/g,'').trim().slice(0,MAXL),n:String(d.n||'').trim().slice(0,12),w:d.w==1?1:0,c:d.c==2?2:1,s:[0,1,2].indexOf(+d.s)>=0?+d.s:0,t:[0,1,2].indexOf(+d.t)>=0?+d.t:0,p:[0,1,2,3,4].indexOf(+d.p)>=0?+d.p:0};
  if(r.p==4){r.pc=String(d.pc||'').trim().slice(0,MAXC);if(!r.pc)r.p=0}
  ['pl','wl','pr'].forEach(function(k){var a=splitL(d[k],k);if(a)r[k]=a});var ps=splitL(d.ps,'pr');if(ps){r.pr=ps;r.pick=1}r.o=String(d.o||'').replace(/[^hfwt]/g,'').slice(0,4);return r}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
@@ -249,11 +306,11 @@ function gen(){
  '<div class="row"><span class="lab">TA 叫</span><input class="t" id="nm" maxlength="12" placeholder="对方的名字或昵称"></div>'+
  '<div class="row"><span class="lab">谁道歉</span><div class="chips" id="cw"></div></div>'+
  '<div class="row"><span class="lab">小人</span><div class="chips" id="cc"></div></div>'+
- '<!-- 我来写 entry: pending --><div id="selfWrite" style="display:none"></div>'+
- '<div class="row"><span class="lab">因为啥</span><div class="chips" id="cs"></div></div>'+
+  '<div class="row"><span class="lab">因为啥</span><div class="chips" id="cs"></div></div>'+
  '<div class="row" id="ctRow"><span class="lab">语气</span><div class="chips" id="ct"></div></div>'+
  '<div class="row"><span class="lab">玩法</span><div class="chips" id="cg"></div></div><p class="ghint" id="cgH">至少留两个玩法，TA 才能攒满消气值哦</p>'+
  '<div class="ed" id="ed_pl"></div><div class="ed" id="ed_wl"></div><div class="ed" id="ed_pr"></div>'+
+ '<div id="selfWrite"><div class="row"><span class="lab">写信</span><div class="chips" id="clm"><button class="chip" data-lm="self">✍️ 我来写</button><button class="chip" data-lm="ai" hidden>🤖 AI 帮我写</button><button class="chip" data-lm="tpl">用现成的</button></div></div><button class="swc" id="swGo"></button></div>'+
  '<div class="row" id="exRow"><span class="lab">想解释</span><input class="t" id="ex" maxlength="60" placeholder="选填，60 字以内"></div>'+
  '<div class="pv"><div class="mini" id="mini"></div><p id="pv"></p></div>'+
  '<div class="btns"><button class="big alt" id="see">先看看效果</button><button class="big" id="go">生成链接</button></div>';
@@ -265,7 +322,7 @@ function gen(){
   var hidden=(k=='pl'&&OFF.indexOf('f')>=0)||(k=='wl'&&(OFF.indexOf('w')>=0||c.noWheel));el.style.display=hidden?'none':'block';if(hidden)return;
   var sum=a.filter(Boolean).length?(k=='pr'&&a.filter(Boolean).length>1?(PM?'让 TA 挑一个 · ':'全都给 TA · '):'')+a.filter(Boolean).length+' 项 · '+a.filter(Boolean).join('、'):(k=='pr'?(c.pcHint||'写一个承诺吧'):'');
   var h='<button class="edh" data-k="'+k+'"><b>'+ED[k][0]+'</b><span class="sum">'+esc(sum)+'</span><i>'+(openEd==k?'收起':'改')+'</i></button>';
-  if(openEd==k){h+='<div class="edb">'+(k=='pr'?'<div class="pmw"><button class="chip'+(PM?' on':'')+'" data-m="1">让 TA 挑一个</button><button class="chip'+(PM?'':' on')+'" data-m="0">全都给 TA</button></div>':'')+'<p class="ghint on">'+(k=='pr'?(PM?'她会从里面挑一个最想要的，写进和好券':'和好券上会写下你所有的承诺'):ED[k][1])+'</p>'+(a.length?a:['']).map(function(v,i){return '<div class="it"><input class="t" data-i="'+i+'" maxlength="'+L.cap+'" value="'+esc(v)+'" placeholder="'+(k=='pr'&&c.pcHint?c.pcHint:'写点什么')+'"><button class="del" data-i="'+i+'"'+(a.length<=L.min?' disabled':'')+'>×</button></div>'}).join('')+
+  if(openEd==k){h+='<div class="edb">'+(k=='pr'?'<div class="pmw"><button class="chip'+(PM?' on':'')+'" data-m="1">让 TA 挑一个</button><button class="chip'+(PM?'':' on')+'" data-m="0">全都给 TA</button></div>':'')+'<p class="ghint on">'+(k=='pr'?(PM?'TA 会从里面挑一个最想要的，写进和好券':'和好券上会写下你所有的承诺'):ED[k][1])+'</p>'+(a.length?a:['']).map(function(v,i){return '<div class="it"><input class="t" data-i="'+i+'" maxlength="'+L.cap+'" value="'+esc(v)+'" placeholder="'+(k=='pr'&&c.pcHint?c.pcHint:'写点什么')+'"><button class="del" data-i="'+i+'"'+(a.length<=L.min?' disabled':'')+'>×</button></div>'}).join('')+
    '<div class="edf"><button class="add"'+(a.length>=L.max?' disabled':'')+'>＋ 加一项</button><span class="ghint on">'+(a.length>=L.max?'最多 '+L.max+' 项，已经很丰富啦':a.length<=L.min?'至少留 '+L.min+' 项哦':'')+'</span></div></div>'}
   el.innerHTML=h;
   el.querySelector('.edh').onclick=function(){openEd=openEd==k?'':k;drawEds()};
@@ -276,15 +333,56 @@ function gen(){
  function drawEds(){['pl','wl','pr'].forEach(edDraw)}
  function gDraw(){var c=COPY.cats[d.k],cs=CARDS.filter(function(x){return !(x[1]=='wheel'&&c.noWheel)}),on=cs.filter(function(x){return OFF.indexOf(x[0])<0}).length;
   $('#cg').innerHTML=cs.map(function(x){var isOn=OFF.indexOf(x[0])<0;return '<button class="chip tg'+(isOn?' on':'')+'" data-c="'+x[0]+'"'+(isOn&&on<=2?' disabled':'')+'>'+(isOn?'✓ ':'')+x[2]+'</button>'}).join('');
-  $('#cgH').classList.toggle('on',on<=2);$('#exRow').style.display=OFF.indexOf('t')>=0?'none':'flex'}
+  $('#cgH').classList.toggle('on',on<=2);typeof lmDraw=='function'&&lmDraw()}
  $('#cg').onclick=function(e){var b=e.target.closest('.chip');if(!b)return;var k=b.dataset.c;if(OFF.indexOf(k)>=0)OFF=OFF.replace(k,'');else{if(b.disabled)return;OFF+=k}draw()};
  function draw(){var m={w:d.w,c:d.c-1,s:d.k,t:d.t};$('#ctRow').style.display=COPY.cats[d.k].serious?'none':'flex';gDraw();drawEds();pvDraw();['w','c','s','t'].forEach(function(k){[].forEach.call($('#c'+k).children,function(b,i){b.classList.toggle('on',i==m[k])})});
   $('#mini').innerHTML=figHTML(d.w?'f':'m',d.c,'guilty')}
- function pvDraw(){var x=cur(),pr=LS.pr.filter(Boolean);$('#pv').innerHTML=apo(x)+'<br><span style="color:#E8505B">＋ '+(pr.length?(PM&&pr.length>1?'让 TA 挑一个：':'')+esc(pr.join('、')):'写一个承诺吧')+'</span>'}
+ function pvDraw(){var x=cur(),pr=LS.pr.filter(Boolean);$('#pv').innerHTML=apo(x)+(OFF.indexOf('t')<0&&typeof LM!='undefined'?'<br><span style="color:#8C6D60">✉️ '+(LM=='self'&&BS.letter?'附上你写的信（'+BS.letter.length+' 字）':LM=='self'?'还没写信，会先用现成的那段':'用现成的那段')+'</span>':'')+'<br><span style="color:#E8505B">＋ '+(pr.length?(PM&&pr.length>1?'让 TA 挑一个：':'')+esc(pr.join('、')):'写一个承诺吧')+'</span>'}
  function cur(){d.n=$('#nm').value;var ev=$('#ex').value.trim();d.e=(ev&&ev!=COPY.cats[d.k].explain)?ev:'';var c=clean(d);if(d.p==4&&!c.pc){c.p=4;c.pc=''}return c}
  $('#ex').value=COPY.cats[0].explain;$('#nm').oninput=pvDraw;
+ // ==== 我来写 ====
+ var LM='self',BS={a:['','','',''],fe:[],end:0,letter:'',edited:false},bi=0;
+ var bd=document.createElement('div');bd.className='bd';bd.id='bld';document.body.appendChild(bd);
+ function lmDraw(){if(!BS)return;[].forEach.call(document.querySelectorAll('#clm .chip'),function(b){b.classList.toggle('on',b.dataset.lm==LM)});var on=OFF.indexOf('t')<0;$('#selfWrite').style.display=on?'block':'none';
+  $('#swGo').style.display=on&&LM=='self'?'flex':'none';$('#exRow').style.display=on&&LM=='tpl'?'flex':'none';
+  $('#swGo').innerHTML=BS.letter?'<b>✍️ 你写的信</b><span>'+esc(BS.letter.replace(/\n/g,' ').slice(0,34))+'…</span><i>改一改</i>':'<b>✍️ 写一封只属于这件事的信</b><span>四小步，陪你把这件事想清楚</span><i>开始写</i>'}
+ $('#clm').onclick=function(e){var b=e.target.closest('.chip');if(!b)return;LM=b.dataset.lm;lmDraw();pvDraw()};
+ $('#swGo').onclick=function(){bi=BS.letter?4:0;bdDraw();bd.classList.add('on');document.body.style.overflow='hidden'};
+ function strip(t){return String(t||'').trim().replace(/[。！!，,；;、\s]+$/,'')}
+ function assemble(){var c=COPY.cats[d.k],a=BS.a.map(strip),L=[];
+  if(a[0])L.push(a[0]+'。');
+  var fe=BS.fe.slice(0,3);if(fe.length||a[1])L.push((fe.length?'你那会儿可能觉得'+fe.join('、')+(a[1]?'，':''):'我想了想，')+(a[1]||'')+'。');
+  if(a[2])L.push(a[2]+'，对不起。');
+  var pr=LS.pr.map(function(x){return x.trim()}).filter(Boolean),pl=pr.length?(PM&&pr.length>1?'和好券上还有几个小补偿，你挑一个最想要的。':'和好券上写着「'+pr.join('」「')+'」，随时找我兑现。'):'';
+  if(a[3]||pl)L.push((a[3]?a[3]+'。':'')+pl);
+  if(BS.end)L.push(COPY.build.ends[BS.end-1]);
+  return L.join('\n').slice(0,MAXL)}
+ function warnHTML(t){var ws=warnsOf(t);if(!ws.length)return '';return '<div class="wn">'+ws.map(function(w){var m=t.match(w.re);return '<p>💡 '+(m&&m[0].length&&w.re.source.charAt(0)!='^'?'「'+esc(m[0])+'」':'')+esc(w.tip)+'</p>'}).join('')+(ws.some(function(w){return w.rep})?'<button class="rw">帮我换个说法</button>':'')+'</div>'}
+ function bdDraw(){var B=COPY.build,h='<div class="bdi"><div class="bdt"><span class="dots">'+[0,1,2,3,4].map(function(i){return '<i'+(i<=bi?' class="on"':'')+'></i>'}).join('')+'</span><button class="bx" id="bX">×</button></div>';
+  if(bi<4){var st=B.steps[bi];h+=(bi==0?'<p class="bin">'+B.intro+'</p>':'')+'<h3>'+st.t+'</h3><p class="bq">'+st.q+'</p>';
+   if(bi==1)h+='<div class="chips fe">'+B.feel[d.k].map(function(f){return '<button class="chip'+(BS.fe.indexOf(f)>=0?' on':'')+'" data-f="'+f+'">'+f+'</button>'}).join('')+'<button class="chip" data-f="?">'+B.guess+'</button></div>';
+   h+='<textarea class="ta" id="bT" maxlength="120" placeholder="'+(bi==1?'也可以自己写，比如「你可能觉得……」':'写下来，120 字以内')+'">'+esc(BS.a[bi])+'</textarea><div id="bW">'+warnHTML(BS.a[bi])+'</div>';
+   if(bi==3)h+='<p class="bq sm">这类情况，很多人会：'+B.fix[d.k]+'</p><p class="bq sm">结尾想加一句吗？</p><div class="chips en">'+['不加'].concat(B.ends).map(function(e,i){return '<button class="chip'+(BS.end==i?' on':'')+'" data-e="'+i+'">'+e+'</button>'}).join('')+'</div>';
+   h+='<button class="tp" id="bTip">写不出来点这里 👇</button><div class="tps" id="bTips"><ul>'+st.tips.map(function(t){return '<li>'+t+'</li>'}).join('')+'</ul><p class="bex">例：'+st.ex+'</p></div>';
+   h+='<div class="bnav">'+(bi?'<button class="sec" id="bP">上一步</button>':'')+'<button class="big" id="bN">'+(bi==3?'拼成一封信':'下一步')+'</button></div>'}
+  else{if(!BS.edited||!BS.letter)BS.letter=assemble();h+='<h3>拼好啦，读一遍再改改</h3><p class="bq">站在TA那边读一遍，把不像你会说的话改成你的话。</p><textarea class="ta lt" id="bL" maxlength="'+MAXL+'">'+esc(BS.letter)+'</textarea><p class="cnt" id="bC"></p><div id="bW">'+warnHTML(BS.letter)+'</div>'+
+   '<div class="bnav"><button class="sec" id="bP">回到第4步</button><button class="big" id="bOk">就用这封</button></div>'+(BS.edited?'<button class="tp" id="bRe">按四步重新拼一次</button>':'')}
+  bd.innerHTML=h+'</div>';
+  var T=$('#bT')||$('#bL');
+  function wr(){$('#bW').innerHTML=warnHTML(T.value);var rw=$('#bW .rw');if(rw)rw.onclick=function(){var v=T.value;warnsOf(v).forEach(function(w){if(w.rep)v=w.rep(v)});T.value=v.slice(0,+T.maxLength);T.oninput()}}
+  T.oninput=function(){if(bi<4)BS.a[bi]=T.value;else{BS.letter=T.value;BS.edited=true;$('#bC').textContent=T.value.length+' / '+MAXL}wr()};wr();if(bi==4)$('#bC').textContent=T.value.length+' / '+MAXL;
+  $('#bX').onclick=function(){bd.classList.remove('on');document.body.style.overflow='';lmDraw();pvDraw()};
+  $('#bTip')&&($('#bTip').onclick=function(){$('#bTips').classList.toggle('on')});
+  $('#bP')&&($('#bP').onclick=function(){bi--;bdDraw()});
+  $('#bN')&&($('#bN').onclick=function(){bi++;bdDraw();bd.scrollTop=0});
+  $('#bRe')&&($('#bRe').onclick=function(){BS.edited=false;bdDraw()});
+  $('#bOk')&&($('#bOk').onclick=function(){BS.letter=$('#bL').value.trim();if(!BS.letter){toast('先写几句吧');return}$('#bX').onclick()});
+  [].forEach.call(bd.querySelectorAll('.fe .chip'),function(b){b.onclick=function(){var f=b.dataset.f;if(f=='?'){BS.fe=COPY.build.feel[d.k].slice(0,2)}else{var i=BS.fe.indexOf(f);if(i>=0)BS.fe.splice(i,1);else BS.fe.push(f)}var v=$('#bT').value;bdDraw();}});
+  [].forEach.call(bd.querySelectorAll('.en .chip'),function(b){b.onclick=function(){BS.end=+b.dataset.e;bdDraw()}})}
+ lmDraw();
  function link(){var c=clean(cur());delete c.s;if(!c.e)delete c.e;if(COPY.cats[c.k].serious)c.t=1;delete c.pc;if(c.p==4)c.p=0;
   ['pl','wl','pr'].forEach(function(k){var a=LS[k].map(function(x){return x.trim().replace(/\|/g,'／')}).filter(Boolean);if(k=='wl'&&COPY.cats[c.k].noWheel)a=[];delete c.ps;if(a.length&&!sameList(a,defList(k,c.k)))c[k=='pr'&&PM?'ps':k]=a.join('|');else delete c[k]});
+  if(LM=='self'&&BS.letter&&OFF.indexOf('t')<0){c.l=BS.letter;delete c.e}else delete c.l;
   var off=OFF.split('').filter(function(x){return !(x=='w'&&COPY.cats[c.k].noWheel)}).join('');if(off)c.o=off;else delete c.o;return location.origin+location.pathname+'?d='+enc(c)}
  function ok2(){if(!LS.pr.filter(function(x){return x.trim()}).length){toast('先写一个承诺吧');openEd='pr';drawEds();return false}var w=LS.wl.filter(function(x){return x.trim()});if(!COPY.cats[d.k].noWheel&&OFF.indexOf('w')<0&&w.length<4){toast('转盘再加几格吧，至少 4 格');openEd='wl';drawEds();return false}return true}
  $('#see').onclick=function(){if(ok2())location.href=link()};
@@ -312,7 +410,8 @@ function recv(d){
  '<div class="ov" id="ovFine"><button class="x" data-x>×</button><div id="fineA" style="display:flex;flex-direction:column;align-items:center;width:100%"><h2>罚'+T2+'做什么？</h2><div class="pens" id="pens"></div><input class="t" id="penIn" maxlength="20" placeholder="写下你想罚的，20 字以内"><button class="big" id="penGo">开罚单</button></div>'+
  '<div id="fineB" style="display:none;flex-direction:column;align-items:center;width:100%"><img id="tk" alt="罚单"><p class="hint" id="tkh">长按图片保存</p><button class="big" data-x>收下罚单</button></div></div>'+
  '<div class="ov" id="ovWheel"><button class="x" data-x>×</button><h2>'+COPY.ui.wheelName+'</h2><p class="hint" style="margin:-4px 0 4px">'+COPY.ui.wheelSub+'</p><div class="wh"><div class="pin"></div><div class="disc" id="disc">'+wheelHTML(WL)+'</div><div class="hub"></div></div><div id="whRes">转到哪个，'+T2+'就给你哪个</div><button class="big" id="spin">转一下</button></div>'+
- '<div class="ov" id="ovTalk"><button class="x" data-x>×</button><h2>听我解释</h2><div class="letter"><div class="to">给 '+name+'：</div>'+esc(expl(d))+'<div class="fr">—— 想你的'+T2+'</div></div><button class="big" data-x>听完了</button></div>'+
+ '<div class="ov" id="ovTalk"><button class="x" data-x>×</button><h2>听我解释</h2><div class="lw" id="lw"><div class="lenv"><div class="lback"></div><div class="letter paper" id="lp"><div class="to">给 '+name+'：</div><div id="lt"></div><div class="fr" id="lfr">—— 想你的'+T2+' · '+(new Date().getMonth()+1)+' 月 '+new Date().getDate()+' 日</div></div><div class="lfront"></div><div class="lflap"></div><button class="seal" id="seal" aria-label="拆开信">'+(T2=='她'?'她':'他')+'</button></div></div>'+
+ '<p class="hint" id="lhint">点一下火漆印，拆开看看</p><div class="lbt" id="lbt"><button class="big" id="lok">我看完了</button><button class="lnk" id="lcalm">我想先静一静</button></div></div>'+
  '<div class="ov" id="ovCalm"><img id="calmImg" alt="冷静卡"><p class="hint">长按图片保存，发给'+T2+'</p><button class="big" id="calmBack">'+COPY.calm.back+'</button></div>'+
  '<section class="act" id="a3"><p class="q">原谅'+T2+'吗？</p><div class="stage duo nosel" id="stg3" style="--h:170px"><div class="me">'+figHTML(g,d.c,'kneel')+'</div>'+figHTML(o,d.c,'angry','ot')+'</div><div class="zone" id="zone"><button class="big" id="yes">原谅</button><button id="no">不原谅</button></div>'+
  '<button id="calmL">我还想再气一会儿</button><div id="pick"></div><div class="imgbox" id="cp"><img id="cpImg" alt="和好券"><p class="hint">长按图片保存，发给'+T2+'</p></div></section>'+
@@ -329,6 +428,19 @@ function recv(d){
  var RC=cat(d)?cat(d).rec:'';if(ON.indexOf(RC)<0)RC=ON[0];if(RC)document.querySelector('.cd[data-k="'+RC+'"]').insertAdjacentHTML('beforeend','<em class="tag">推荐</em>');
  [].forEach.call(document.querySelectorAll('.cd'),function(c){c.onclick=function(){openOv(c.dataset.k)}});
  [].forEach.call(document.querySelectorAll('[data-x]'),function(c){c.onclick=closeOv});
+ // ==== 信封 + 逐字打出来（letter_v3 c） ====
+ var LTXT=(d.l||expl(d)).split('\n').map(function(x){return x.trim()}).filter(Boolean),lst=0,ltm=null;
+ function lFinish(){clearTimeout(ltm);$('#lt').innerHTML=LTXT.map(function(p){return '<p>'+esc(p)+'</p>'}).join('');$('#lfr').classList.add('on');$('#lbt').classList.add('on');$('#lhint').textContent='';lst=3}
+ function lType(){var pi=0,ci=0,el=null;$('#lt').innerHTML='';$('#lhint').textContent='点信纸可以直接看完';
+  (function tick(){if(lst!=2)return;if(pi>=LTXT.length){lFinish();return}if(!el){el=document.createElement('p');$('#lt').appendChild(el)}
+   var p=LTXT[pi];el.textContent=p.slice(0,++ci);var lp=$('#lp');lp.scrollTop=lp.scrollHeight;
+   if(ci>=p.length){pi++;ci=0;el=null;ltm=setTimeout(tick,300)}else ltm=setTimeout(tick,45)})()}
+ function lOpen(){if(lst)return;lst=1;squeak();$('#lw').classList.add('open');$('#lhint').textContent='';
+  if(RM){$('#lw').classList.add('read');lst=2;lFinish();return}
+  setTimeout(function(){$('#lw').classList.add('read');lst=2;lType()},1100)}
+ $('#seal').onclick=lOpen;$('#lw').addEventListener('click',function(e){if(lst==0&&!e.target.closest('#seal'))lOpen();else if(lst==2&&e.target.closest('#lp'))lFinish()});
+ $('#lok').onclick=closeOv;
+ $('#lcalm').onclick=function(){[].forEach.call(document.querySelectorAll('.ov'),function(o){o.classList.remove('on')});$('#calmL').onclick()};
  document.addEventListener('contextmenu',function(e){if(e.target.id!='tk')e.preventDefault()});
  $('#fgo').onclick=function(){go('a3');placeNo()};
  function setFig(p,c){var f=stg.querySelector('.fig');f.src=src(g,d.c,p);if(c){f.classList.remove('hit','shake');void f.offsetWidth;f.classList.add(c)}}
@@ -353,7 +465,7 @@ function recv(d){
    var c=window.confetti&&confetti.create($('#cf'),{resize:true,useWorker:false});c&&c({particleCount:60,spread:70,origin:{y:.55},colors:['#EE7F92','#FFD36E','#6FA3D8']})},3100)};
  // ---- 冷静卡
  $('#calmL').onclick=function(){squeak();drawCard('calm',function(u){$('#calmImg').src=u;$('#ovCalm').classList.add('on')})};
- $('#calmBack').onclick=function(){$('#ovCalm').classList.remove('on');yes.onclick()};
+ $('#calmBack').onclick=function(){$('#ovCalm').classList.remove('on');go('a3');yes.onclick()};
  function dstr(dt){return dt.getFullYear()+' 年 '+(dt.getMonth()+1)+' 月 '+dt.getDate()+' 日'}
  function drawCard(kind,cb){var W=750,H=1000,cv=document.createElement('canvas');cv.width=W;cv.height=H;var x=cv.getContext('2d'),F='-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif';
   var im=new Image();im.onload=function(){paint(im)};im.onerror=function(){paint(null)};im.src=src(g,d.c,kind=='calm'?'guilty':'happy');
