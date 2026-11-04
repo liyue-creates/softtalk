@@ -408,7 +408,7 @@ function recv(d){
    x.fillStyle='#8C6D60';x.font='28px '+F;x.fillText('乖乖执行，监督到底',380,Math.max(ey+60,610));
    x.strokeStyle='#E8B9A0';x.lineWidth=3;x.setLineDash([10,10]);x.beginPath();x.moveTo(80,720);x.lineTo(670,720);x.stroke();x.setLineDash([]);
    var dt=new Date(),ds=dt.getFullYear()+' 年 '+(dt.getMonth()+1)+' 月 '+dt.getDate()+' 日';
-   x.fillStyle='#4A2E22';x.font='600 34px '+F;x.fillText('开单人：'+(d.n||'你'),100,790);x.fillText('日期：'+ds,100,850);
+   x.fillStyle='#4A2E22';x.font='600 34px '+F;x.fillText('日期：'+ds,100,850);var nt='开单人：'+(d.n||'你'),fs=34;while(fs>26){x.font='600 '+fs+'px '+F;if(x.measureText(nt).width<=410)break;fs-=2}while(x.measureText(nt).width>410&&nt.length>5)nt=nt.slice(0,-2)+'…';x.fillText(nt,100,790);
    x.save();x.translate(590,800);x.rotate(-.28);x.strokeStyle='rgba(232,80,91,.85)';x.fillStyle='rgba(232,80,91,.85)';x.lineWidth=8;x.beginPath();x.arc(0,0,82,0,7);x.stroke();x.lineWidth=3;x.beginPath();x.arc(0,0,69,0,7);x.stroke();
    x.textAlign='center';x.font='900 42px '+F;x.fillText('已认罚',0,16);x.restore();
    x.textAlign='center';x.fillStyle='#c9a896';x.font='24px '+F;x.fillText('凭此单监督执行 · 长按保存',W/2,925);
