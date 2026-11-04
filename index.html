@@ -129,6 +129,7 @@ input.t:focus{border-color:#EE7F92}
 .edb{padding:6px 2px 2px}.edb .ghint{margin:0 0 6px 4px;color:#8C6D60}.it{display:flex;gap:6px;margin:4px 0}.it input{min-height:38px}
 .del{flex:0 0 38px;height:38px;border-radius:19px;background:#FDEBE6;color:#E8505B;font-size:18px}.del[disabled]{opacity:.35}
 .edf{display:flex;align-items:center;gap:8px;margin-top:4px}.add{min-height:36px;padding:0 14px;border-radius:18px;border:2px dashed #EE7F92;color:#E8505B;font-size:14px}.add[disabled]{opacity:.4}.edf .ghint{margin:0}
+.pmw{display:flex;gap:8px;margin:2px 0 6px}#pick{display:none;text-align:center;padding:10px 4px}#pick.on{display:block}#pick .pq{font-size:19px;font-weight:800;color:#E8505B;margin:0}#pick .ps{font-size:13px;color:#8C6D60;margin:4px 0 10px}#pick .pens{margin:0 auto}
 @media (prefers-reduced-motion:reduce){.env{animation:none}.act.on{animation:none}}
 </style></head><body><div id="app"></div><div id="toast"></div>
 <div id="linkBox"><div class="card"><b>长按下面的链接复制</b><div class="lk" id="lk"></div><div class="hint">复制好就去发给 TA 吧</div><div class="btns" style="margin-top:10px"><button class="big" id="lkOk">好的</button></div></div></div>
@@ -215,7 +216,7 @@ function enc(o){var b=new TextEncoder().encode(JSON.stringify(o)),s='';for(var i
 function dec(t){try{t=t.replace(/-/g,'+').replace(/_/g,'/');var s=atob(t),b=new Uint8Array(s.length);for(var i=0;i<s.length;i++)b[i]=s.charCodeAt(i);return JSON.parse(new TextDecoder().decode(b))}catch(e){return null}}
 function clean(d){d=d||{};var r={k:(d.k!==undefined&&+d.k>=0&&+d.k<COPY.cats.length)?+d.k:-1,e:String(d.e||'').trim().slice(0,60),n:String(d.n||'').trim().slice(0,12),w:d.w==1?1:0,c:d.c==2?2:1,s:[0,1,2].indexOf(+d.s)>=0?+d.s:0,t:[0,1,2].indexOf(+d.t)>=0?+d.t:0,p:[0,1,2,3,4].indexOf(+d.p)>=0?+d.p:0};
  if(r.p==4){r.pc=String(d.pc||'').trim().slice(0,MAXC);if(!r.pc)r.p=0}
- ['pl','wl','pr'].forEach(function(k){var a=splitL(d[k],k);if(a)r[k]=a});r.o=String(d.o||'').replace(/[^hfwt]/g,'').slice(0,4);return r}
+ ['pl','wl','pr'].forEach(function(k){var a=splitL(d[k],k);if(a)r[k]=a});var ps=splitL(d.ps,'pr');if(ps){r.pr=ps;r.pick=1}r.o=String(d.o||'').replace(/[^hfwt]/g,'').slice(0,4);return r}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 // ==== DIY 列表上限 ====
 var LIM={pl:{min:1,max:6,cap:12},wl:{min:4,max:8,cap:8},pr:{min:1,max:6,cap:12}};
@@ -243,7 +244,7 @@ function squeak(){tone(900,1400,.08,'square',.06)}
 function yay(){tone(300,1200,.35,'sine',.25);tone(1200,500,.25,'sine',.2,.35);[523,659,784,1046].forEach(function(f,i){tone(f,f,.14,'triangle',.18,.62+i*.1)})}
 // ---- generator
 function gen(){
- var d=clean({});d.k=0;d.p=COPY.cats[0].prom;var LS={pl:defList('pl',0),wl:defList('wl',0),pr:defList('pr',0)},dirty={},openEd='',OFF='';app.classList.add('gen');
+ var PM=1;var d=clean({});d.k=0;d.p=COPY.cats[0].prom;var LS={pl:defList('pl',0),wl:defList('wl',0),pr:defList('pr',0)},dirty={},openEd='',OFF='';app.classList.add('gen');
  app.innerHTML='<h1>软话小人<small>替你把对不起说出口</small></h1>'+
  '<div class="row"><span class="lab">TA 叫</span><input class="t" id="nm" maxlength="12" placeholder="对方的名字或昵称"></div>'+
  '<div class="row"><span class="lab">谁道歉</span><div class="chips" id="cw"></div></div>'+
@@ -262,13 +263,13 @@ function gen(){
  var ED={pl:['罚单内容','她从这些里挑一个开罚单，还能自己填'],wl:['转盘奖品','转盘 4 到 8 格，每格 8 个字以内'],pr:['我的承诺','和好券上会写下你所有的承诺']};
  function edDraw(k){var el=$('#ed_'+k),L=LIM[k],a=LS[k],c=COPY.cats[d.k];
   var hidden=(k=='pl'&&OFF.indexOf('f')>=0)||(k=='wl'&&(OFF.indexOf('w')>=0||c.noWheel));el.style.display=hidden?'none':'block';if(hidden)return;
-  var sum=a.filter(Boolean).length?a.filter(Boolean).length+' 项 · '+a.filter(Boolean).join('、'):(k=='pr'?(c.pcHint||'写一个承诺吧'):'');
+  var sum=a.filter(Boolean).length?(k=='pr'&&a.filter(Boolean).length>1?(PM?'让 TA 挑一个 · ':'全都给 TA · '):'')+a.filter(Boolean).length+' 项 · '+a.filter(Boolean).join('、'):(k=='pr'?(c.pcHint||'写一个承诺吧'):'');
   var h='<button class="edh" data-k="'+k+'"><b>'+ED[k][0]+'</b><span class="sum">'+esc(sum)+'</span><i>'+(openEd==k?'收起':'改')+'</i></button>';
-  if(openEd==k){h+='<div class="edb"><p class="ghint on">'+ED[k][1]+'</p>'+(a.length?a:['']).map(function(v,i){return '<div class="it"><input class="t" data-i="'+i+'" maxlength="'+L.cap+'" value="'+esc(v)+'" placeholder="'+(k=='pr'&&c.pcHint?c.pcHint:'写点什么')+'"><button class="del" data-i="'+i+'"'+(a.length<=L.min?' disabled':'')+'>×</button></div>'}).join('')+
+  if(openEd==k){h+='<div class="edb">'+(k=='pr'?'<div class="pmw"><button class="chip'+(PM?' on':'')+'" data-m="1">让 TA 挑一个</button><button class="chip'+(PM?'':' on')+'" data-m="0">全都给 TA</button></div>':'')+'<p class="ghint on">'+(k=='pr'?(PM?'她会从里面挑一个最想要的，写进和好券':'和好券上会写下你所有的承诺'):ED[k][1])+'</p>'+(a.length?a:['']).map(function(v,i){return '<div class="it"><input class="t" data-i="'+i+'" maxlength="'+L.cap+'" value="'+esc(v)+'" placeholder="'+(k=='pr'&&c.pcHint?c.pcHint:'写点什么')+'"><button class="del" data-i="'+i+'"'+(a.length<=L.min?' disabled':'')+'>×</button></div>'}).join('')+
    '<div class="edf"><button class="add"'+(a.length>=L.max?' disabled':'')+'>＋ 加一项</button><span class="ghint on">'+(a.length>=L.max?'最多 '+L.max+' 项，已经很丰富啦':a.length<=L.min?'至少留 '+L.min+' 项哦':'')+'</span></div></div>'}
   el.innerHTML=h;
   el.querySelector('.edh').onclick=function(){openEd=openEd==k?'':k;drawEds()};
-  if(openEd!=k)return;if(!a.length)LS[k]=a=[''];
+  if(openEd!=k)return;[].forEach.call(el.querySelectorAll('.pmw .chip'),function(b){b.onclick=function(){PM=+b.dataset.m;edDraw(k);pvDraw()}});if(!a.length)LS[k]=a=[''];
   [].forEach.call(el.querySelectorAll('input'),function(inp){inp.oninput=function(){a[+inp.dataset.i]=inp.value;dirty[k]=1;el.querySelector('.sum').textContent=a.filter(Boolean).join('、');pvDraw()}});
   [].forEach.call(el.querySelectorAll('.del'),function(b){b.onclick=function(){if(a.length<=L.min)return;a.splice(+b.dataset.i,1);dirty[k]=1;edDraw(k);pvDraw()}});
   el.querySelector('.add').onclick=function(){if(a.length>=L.max)return;a.push('');dirty[k]=1;edDraw(k);var ins=el.querySelectorAll('input');ins[ins.length-1].focus()}}
@@ -279,11 +280,11 @@ function gen(){
  $('#cg').onclick=function(e){var b=e.target.closest('.chip');if(!b)return;var k=b.dataset.c;if(OFF.indexOf(k)>=0)OFF=OFF.replace(k,'');else{if(b.disabled)return;OFF+=k}draw()};
  function draw(){var m={w:d.w,c:d.c-1,s:d.k,t:d.t};$('#ctRow').style.display=COPY.cats[d.k].serious?'none':'flex';gDraw();drawEds();pvDraw();['w','c','s','t'].forEach(function(k){[].forEach.call($('#c'+k).children,function(b,i){b.classList.toggle('on',i==m[k])})});
   $('#mini').innerHTML=figHTML(d.w?'f':'m',d.c,'guilty')}
- function pvDraw(){var x=cur(),pr=LS.pr.filter(Boolean);$('#pv').innerHTML=apo(x)+'<br><span style="color:#E8505B">＋ '+(pr.length?esc(pr.join('、')):'写一个承诺吧')+'</span>'}
+ function pvDraw(){var x=cur(),pr=LS.pr.filter(Boolean);$('#pv').innerHTML=apo(x)+'<br><span style="color:#E8505B">＋ '+(pr.length?(PM&&pr.length>1?'让 TA 挑一个：':'')+esc(pr.join('、')):'写一个承诺吧')+'</span>'}
  function cur(){d.n=$('#nm').value;var ev=$('#ex').value.trim();d.e=(ev&&ev!=COPY.cats[d.k].explain)?ev:'';var c=clean(d);if(d.p==4&&!c.pc){c.p=4;c.pc=''}return c}
  $('#ex').value=COPY.cats[0].explain;$('#nm').oninput=pvDraw;
  function link(){var c=clean(cur());delete c.s;if(!c.e)delete c.e;if(COPY.cats[c.k].serious)c.t=1;delete c.pc;if(c.p==4)c.p=0;
-  ['pl','wl','pr'].forEach(function(k){var a=LS[k].map(function(x){return x.trim().replace(/\|/g,'／')}).filter(Boolean);if(k=='wl'&&COPY.cats[c.k].noWheel)a=[];if(a.length&&!sameList(a,defList(k,c.k)))c[k]=a.join('|');else delete c[k]});
+  ['pl','wl','pr'].forEach(function(k){var a=LS[k].map(function(x){return x.trim().replace(/\|/g,'／')}).filter(Boolean);if(k=='wl'&&COPY.cats[c.k].noWheel)a=[];delete c.ps;if(a.length&&!sameList(a,defList(k,c.k)))c[k=='pr'&&PM?'ps':k]=a.join('|');else delete c[k]});
   var off=OFF.split('').filter(function(x){return !(x=='w'&&COPY.cats[c.k].noWheel)}).join('');if(off)c.o=off;else delete c.o;return location.origin+location.pathname+'?d='+enc(c)}
  function ok2(){if(!LS.pr.filter(function(x){return x.trim()}).length){toast('先写一个承诺吧');openEd='pr';drawEds();return false}var w=LS.wl.filter(function(x){return x.trim()});if(!COPY.cats[d.k].noWheel&&OFF.indexOf('w')<0&&w.length<4){toast('转盘再加几格吧，至少 4 格');openEd='wl';drawEds();return false}return true}
  $('#see').onclick=function(){if(ok2())location.href=link()};
@@ -314,7 +315,7 @@ function recv(d){
  '<div class="ov" id="ovTalk"><button class="x" data-x>×</button><h2>听我解释</h2><div class="letter"><div class="to">给 '+name+'：</div>'+esc(expl(d))+'<div class="fr">—— 想你的'+T2+'</div></div><button class="big" data-x>听完了</button></div>'+
  '<div class="ov" id="ovCalm"><img id="calmImg" alt="冷静卡"><p class="hint">长按图片保存，发给'+T2+'</p><button class="big" id="calmBack">'+COPY.calm.back+'</button></div>'+
  '<section class="act" id="a3"><p class="q">原谅'+T2+'吗？</p><div class="stage duo nosel" id="stg3" style="--h:170px"><div class="me">'+figHTML(g,d.c,'kneel')+'</div>'+figHTML(o,d.c,'angry','ot')+'</div><div class="zone" id="zone"><button class="big" id="yes">原谅</button><button id="no">不原谅</button></div>'+
- '<button id="calmL">我还想再气一会儿</button><div class="imgbox" id="cp"><img id="cpImg" alt="和好券"><p class="hint">长按图片保存，发给'+T2+'</p></div></section>'+
+ '<button id="calmL">我还想再气一会儿</button><div id="pick"></div><div class="imgbox" id="cp"><img id="cpImg" alt="和好券"><p class="hint">长按图片保存，发给'+T2+'</p></div></section>'+
  '<div class="foot">软话小人</div><canvas id="cf"></canvas>';
  function go(id){[].forEach.call(document.querySelectorAll('.act'),function(a){a.classList.toggle('on',a.id==id)})}
  $('#env').onclick=function(){squeak();go('a2')};
@@ -421,7 +422,10 @@ function recv(d){
   no.style.left=x+'px';no.style.top=y+'px'}
  function dodge(e){e.preventDefault();noi++;squeak();no.textContent=NOS[Math.min(noi,NOS.length-1)];yes.style.setProperty('--s',Math.min(1+noi*.18,2.1));placeNo(false)}
  no.addEventListener('pointerdown',dodge);no.addEventListener('click',function(e){e.preventDefault()});
- yes.onclick=function(){yay();$('#zone').style.display='none';$('#stg3').innerHTML='<div class="me">'+figHTML(g,d.c,'happy')+'</div>'+figHTML(o,d.c,'happy','ot');$('.q').textContent='谢谢你原谅'+T2+'！';$('#stg3').style.display='none';$('#calmL').style.display='none';drawCard('coupon',function(u){$('#cpImg').src=u;$('#cp').classList.add('on')});boom()};
+ yes.onclick=function(){yay();$('#zone').style.display='none';$('#stg3').innerHTML='<div class="me">'+figHTML(g,d.c,'happy')+'</div>'+figHTML(o,d.c,'happy','ot');$('.q').textContent='谢谢你原谅'+T2+'！';$('#stg3').style.display='none';$('#calmL').style.display='none';boom();
+  function show(){drawCard('coupon',function(u){$('#cpImg').src=u;$('#cp').classList.add('on')})}
+  if(d.pick&&PR.length>1){var pk=$('#pick');pk.innerHTML='<p class="pq">挑一个你最想要的吧</p><p class="ps">'+T2+' 会把它写进和好券里</p><div class="pens">'+PR.map(function(p,i){return '<button class="chip" data-i="'+i+'">'+esc(p)+'</button>'}).join('')+'</div>';pk.classList.add('on');
+   [].forEach.call(pk.querySelectorAll('.chip'),function(b){b.onclick=function(){PR=[PR[+b.dataset.i]];pk.classList.remove('on');yay();show()}})}else show()};
  function boom(){var c=window.confetti&&confetti.create($('#cf'),{resize:true,useWorker:false});if(!c)return;var col=['#EE7F92','#6FA3D8','#FFD36E','#9CC28A','#fff'];
   if(RM){c({particleCount:60,spread:90,origin:{y:.5},colors:col,ticks:120});return}
   c({particleCount:120,spread:100,origin:{y:.6},colors:col});setTimeout(function(){c({particleCount:60,angle:60,spread:60,origin:{x:0,y:.7},colors:col});c({particleCount:60,angle:120,spread:60,origin:{x:1,y:.7},colors:col})},250)}
